@@ -5,11 +5,14 @@
   <%= stylesheet_link_tag    'application'%>
   <%= javascript_include_tag 'application'%>
   <%= javascript_include_tag 'angular'%>
+  <%= render 'layouts/template/shim'%>
   <%= csrf_meta_tags %>
 </head>
 <body ng-app='myApp' class="skin-black">
-
-<%= yield %>
-
+  <%= render 'layouts/template/header'%>	
+  <div class="wrapper row-offcanvas row-offcanvas-left">
+    <%= render 'layouts/template/sidebar'%>
+    <%= yield %>
+  </div>
 </body>
 </html>

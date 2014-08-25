@@ -1,0 +1,34 @@
+<aside class="left-side sidebar-offcanvas">         
+  <section class="sidebar">
+    <%= render 'layouts/template/sidebar/profile'%>
+    <%= render 'layouts/template/sidebar/search_form'%>
+      <ul class="sidebar-menu">
+        <li class="">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>BSC</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Objetivos</span> <small class="badge pull-right bg-green">new</small>
+          </a>
+        </li>          
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>Tablas</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-angle-double-right"></i> Tabla 1</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-right"></i> Tabla 2</a></li>
+          </ul>
+        </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i> <span>Auditoria</span>
+              <small class="badge pull-right bg-red">3</small>
+            </a>
+          </li>          
+      </ul>
+  </section>
+</aside>
