@@ -4,9 +4,10 @@
   <title>Audit</title>
   <%= stylesheet_link_tag    'application'%>
   <%= javascript_include_tag 'application'%>
+  <%= javascript_include_tag 'angular'%>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app='myApp' class="skin-black">
 
 <%= yield %>
 

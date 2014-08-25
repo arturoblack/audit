@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap-sass-official/assets/javascripts/bootstrap.js
+//= require js/app.js
+
