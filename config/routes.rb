@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
+    resources :areas, except: [:index,:destroy]
     scope '/search' do
-      match '/areas',to: 'areas#search_areas',as:'search_areas', via: 'get'
+      match '/areas',to: 'areas#search_areas', as:'search_areas', via: 'get'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  match '*path', to: 'home#index', via: :get
   root 'home#index'
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

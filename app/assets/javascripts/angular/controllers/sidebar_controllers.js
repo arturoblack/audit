@@ -1,17 +1,20 @@
 var app = angular.module('sidebarApp.Controllers',
-  ['dirAutocomplete','templates'])
+  ['dirAutocomplete','templates','ngRoute'])
+
 app.controller('sidebarController',
-  ['$scope', function($scope){  
-  $scope.hola = 'chau'  
+  ['$scope', function($scope){
 }]);
 app.controller('sidebarSearchController',
-  ['$scope', function($scope){
+  ['$scope', '$location', function($scope,$location){
   $scope.autocomplete_config = {
     serviceUrl: '/api/search/areas',
     minChars: 3,
-    dataType: 'json'
+    dataType: 'json',
+    deferRequestBy: 100,
   }  
   $scope.onSelect = function(id){
-    console.log(id)
+    $scope.$apply(function () {
+      $location.path("/areas/" + id);
+    });
   }
 }]);
