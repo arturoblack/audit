@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-
+  namespace :api, defaults: {format: 'json'} do
+    scope '/search' do
+      match '/areas',to: 'areas#search_areas',as:'search_areas', via: 'get'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

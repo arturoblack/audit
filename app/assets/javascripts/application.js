@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require js/bootstrap.js
 //= require js/app.js
+//= require jquery.autocomplete.js
 

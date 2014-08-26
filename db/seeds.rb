@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+['Recursos Humanos', 'Proyección Social', 'Colocación Laboral',
+ 'Instituto de Investigación', 'Consejería Académica',
+'Grados y Títulos','Instituto de Investigación','Recursos Educacionales',
+'Vinculación Internacional'].each {|area| Area.create(nombre: area)}
