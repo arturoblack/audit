@@ -15,7 +15,6 @@ app.directive('autocomplete', function(){
         onSelect: '&',
       },
       link: function(scope, element, attr) {
-        console.log(scope.autocompleteConfig.serviceUrl)
         el = $('#search_autocomplete')
         el.autocomplete({
           serviceUrl: scope.autocompleteConfig.serviceUrl,
@@ -32,6 +31,12 @@ app.directive('autocomplete', function(){
                            data: item.id };
                 })
             };
+          },
+          onSearchStart: function (query) {
+            $('#search-btn').html('<i class="fa fa-ellipsis-h"></i>')
+          },
+          onSearchComplete: function (query, suggestions) {
+            $('#search-btn').html('<i class="fa fa-search"></i>')
           },
           showNoSuggestionNotice: true,
           noSuggestionNotice: 'Sin resultados...'
