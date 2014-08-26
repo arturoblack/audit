@@ -1,4 +1,5 @@
-var app = angular.module('sidebarApp.Controllers',['dirAutocomplete'])
+var app = angular.module('sidebarApp.Controllers',
+  ['dirAutocomplete','templates'])
 app.controller('sidebarController',
   ['$scope', function($scope){  
   $scope.hola = 'chau'  

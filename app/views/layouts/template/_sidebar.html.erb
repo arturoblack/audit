@@ -1,7 +1,7 @@
 <aside ng-controller='sidebarController' class="left-side sidebar-offcanvas">         
   <section class="sidebar">
     <%= render 'layouts/template/sidebar/profile'%>
-    <%= render 'layouts/template/sidebar/search_form'%>
+    <div ng-include src="'sidebar/_search_form.html'"></div>
     <div ng-if='loaded_area'>
       <ul class="sidebar-menu">
         <li class="">
