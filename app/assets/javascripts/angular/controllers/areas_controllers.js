@@ -4,10 +4,12 @@ var app = angular.module('areasApp.Controllers',
 app.controller('showAreaController',
   ['$scope', '$routeParams', 'AreaService', 'currentAreaService',
   function($scope, $routeParams, AreaService, currentAreaService){
+  $scope.loading_area = true;  
   AreaService.get({areaId: $routeParams.areaId}).$promise.then(
     function(data) {
       $scope.area = data.area;
       currentAreaService.setArea(data.area.id,data.area.nombre)
+      $scope.loading_area = false; 
     },function(error){
       
     }
