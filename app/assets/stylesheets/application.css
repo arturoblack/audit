@@ -12,6 +12,7 @@
  *= require css/bootstrap.css
  *= require css/admin.css
  *= require css/font-awesome.css
+ *= require angular-loading-bar/src/loading-bar.css
  *= require_self
  */
 .autocomplete-suggestions { border: 1px solid #999; background: #F0F0F0; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }

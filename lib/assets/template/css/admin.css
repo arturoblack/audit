@@ -2766,7 +2766,7 @@ Component: timeline
   color: #f6f6f6;
   background: #444;
 }
-.skin-black .sidebar > .sidebar-menu > li > .treeview-menu {
+.skin-black .sidebar > .sidebar-menu >zz li > .treeview-menu {
   margin: 0 1px;
   background: #444;
 }

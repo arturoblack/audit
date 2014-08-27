@@ -10,3 +10,14 @@ app.factory('AreaService',
     }
   );
 }]);
+
+app.factory('currentAreaService',
+  ['$rootScope', function ($rootScope) {
+  var current_area = {}
+  current_area.setArea = function(id,nombre){
+    this.id = id;
+    this.nombre = nombre;
+    $rootScope.$broadcast("refreshedArea");
+  }
+  return current_area;
+}])

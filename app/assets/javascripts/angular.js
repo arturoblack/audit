@@ -1,9 +1,12 @@
 //= require angular/angular.min.js
 //= require angular-resource/angular-resource.min.js
 //= require angular-route/angular-route.min.js
+//= require angular-animate/angular-animate.min.js
 //= require angular-rails-templates
 //= require_tree ./templates
-
+//external plugins
+//= require angular-loading-bar/src/loading-bar.js
+//end of external plugins
 //= require angular/directives/autocomplete_directive.js
 
 //= require angular/services/area_service.js
