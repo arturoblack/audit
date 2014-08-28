@@ -4,7 +4,7 @@ class Api::AreasController < ApiController
     @areas = Area.where('nombre ilike ?', "%#{params[:query]}%")
   end
   def show
-    sleep 1
+    sleep 0.5
     area = Area.find(params[:id])
     render json: {area: { id: area.id, nombre: area.nombre}}
   end

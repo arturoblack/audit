@@ -1,0 +1,12 @@
+<aside class="right-side">
+  <!--if-->
+  <section ng-show="loading_area" class="content-header">
+    <center><%=image_tag("loading.gif")%></center>
+  </section>
+  <!--else-->
+  <section ng-if='!loading_area && area.id' ng-include src="'procesos/_navigation.html'"  class="content-header"></section>
+      <!-- Main content -->
+  <section ng-if='!loading_area && area.id' class="content">
+    <h4>awevo</h4>
+  </section>
+</aside>

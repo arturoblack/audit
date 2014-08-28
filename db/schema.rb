@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825222618) do
+ActiveRecord::Schema.define(version: 20140827215821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,5 +21,24 @@ ActiveRecord::Schema.define(version: 20140825222618) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "evidences", force: true do |t|
+    t.string   "nombre"
+    t.integer  "proceso_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "evidences", ["proceso_id"], name: "index_evidences_on_proceso_id", using: :btree
+
+  create_table "procesos", force: true do |t|
+    t.string   "nombre"
+    t.integer  "area_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "evidences_count", default: 0
+  end
+
+  add_index "procesos", ["area_id"], name: "index_procesos_on_area_id", using: :btree
 
 end

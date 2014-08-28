@@ -5,15 +5,14 @@ class ApiController < ActionController::Base
   #before_action :authenticate_user!, :check_authorization
   #rescue_from Exceptions::ParamsError, :with => :error_handling
   #rescue_from ArgumentError, :with => :error_handling
-  #rescue_from ActiveRecord::RecordNotFound, :with => :error_handling
+  rescue_from ActiveRecord::RecordNotFound, :with => :error_handling
   #rescue_from CanCan::AccessDenied do |exception|
   #  error_handling(exception, 401)
   #end
   private
   def error_handling(e, code = nil)
-    render json: {status: 'error',
-                  message: e.message,
-                  data:{}}, status: code || 400
+    render json: {error: 'Record not found',
+                  description: e.message}, status: code || 400
   end
   def current_ability
     @current_ability ||= ApiAbility.new(current_user)

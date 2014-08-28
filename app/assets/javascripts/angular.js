@@ -15,6 +15,7 @@
 //= require angular/controllers/areas_controllers.js
 
 
+//= require angular/procesos.js
 //= require angular/areas.js
 //= require angular/sidebar.js
 //= require angular/app.js

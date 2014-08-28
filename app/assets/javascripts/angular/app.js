@@ -1,5 +1,6 @@
 var app = angular.module('myApp',
-          ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp','areasApp'])
+          ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp','areasApp',
+          'procesosApp'])
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }])

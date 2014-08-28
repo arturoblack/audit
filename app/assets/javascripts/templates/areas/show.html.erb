@@ -4,17 +4,8 @@
     <center><%=image_tag("loading.gif")%></center>
   </section>
   <!--else-->
-  <section ng-if='!loading_area' class="content-header">
-    <h1>
-      {{area.nombre}}
-      <small> > Panel de control</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><i class="fa fa-building-o"></i>&nbsp Area</li>
-    </ol>    
-  </section>
+  <section ng-if='!loading_area && area.id' ng-include src="'areas/_navigation.html'"  class="content-header"></section>
       <!-- Main content -->
-  <section ng-if='!loading_area' class="content">
-    <h4>awevo</h4>
+  <section ng-if='!loading_area && area.id' class="content">
   </section><!-- /.content -->   
 </aside><!-- /.right-side -->

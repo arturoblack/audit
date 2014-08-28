@@ -1,10 +1,21 @@
 <div ng-controller='sidebarAreaController'>
-  <div ng-show='area.id'>
+  <div ng-if='area.id'>
     <section class="sidebar">
       <center>
         <i class="fa fa-angle-double-down" style='color: #29d'></i>
       </center>
-      <ul class="sidebar-menu"> 
+      <ul class="sidebar-menu">
+        <li ng-class="{active: active_link == 1}">
+          <a ng-href="/areas/{{area.id}}/procesos">
+            <i class="fa fa-refresh"></i><span>Procesos y Evidencias</span>
+          </a>
+        </li>          
+        <li ng-class="{active: active_link == 2}">
+          <a ng-href="/areas/{{area.id}}/auditorias">
+            <i class="fa fa-pencil-square-o"></i> <span>Auditorias</span>
+            <small class="badge pull-right bg-red">3</small>
+          </a>
+        </li> 
         <li>
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>BSC</span>
@@ -15,12 +26,6 @@
             <i class="fa fa-th"></i> <span>Objetivos</span> <small class="badge pull-right bg-green">new</small>
           </a>
         </li>         
-        <li>
-          <a href="#">
-            <i class="fa fa-calendar"></i> <span>Auditoria</span>
-            <small class="badge pull-right bg-red">3</small>
-          </a>
-        </li>          
       </ul>
     </section>
   </div>

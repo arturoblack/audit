@@ -1,11 +1,12 @@
 var app = angular.module('sidebarApp.Controllers',
-  ['dirAutocomplete','templates','ngRoute'])
+  ['dirAutocomplete','templates','ngRoute','areaService'])
 
 app.controller('sidebarController',
   ['$scope', function($scope){
 }]);
 app.controller('sidebarSearchController',
-  ['$scope', '$location', function($scope,$location){
+  ['$scope', '$location', 'currentAreaService',
+  function($scope,$location,currentAreaService){
   $scope.autocomplete_config = {
     serviceUrl: '/api/search/areas',
     minChars: 3,
@@ -14,6 +15,7 @@ app.controller('sidebarSearchController',
   }  
   $scope.onSelect = function(id){
     $scope.$apply(function () {
+      currentAreaService.resetArea();
       $location.path("/areas/" + id);
     });
   }
