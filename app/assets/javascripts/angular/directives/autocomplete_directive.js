@@ -6,7 +6,7 @@ app.directive('autocomplete', function(){
     replace: true,
     template: '<div class="input-group">\
             <input id="search_autocomplete" type="text" class="form-control" \
-            placeholder="Buscar area..."/><span class="input-group-btn">\
+            placeholder="Buscar area ..."/><span class="input-group-btn">\
             <button name="seach" id="search-btn-autocomplete" class="btn btn-flat">\
             <i class="fa fa-search"></i></button></span></div>',
     scope:{

@@ -1,5 +1,6 @@
 var app = angular.module('areasApp.Controllers',
   ['ngRoute','areaService'])
+
 app.controller('showAreaController',
   ['$scope', '$routeParams', '$location', 'AreaService', 'currentAreaService',
   function($scope, $routeParams, $location, AreaService, currentAreaService){
@@ -9,11 +10,7 @@ app.controller('showAreaController',
       $scope.area = data.area;
       currentAreaService.setArea(data.area.id,data.area.nombre)
       $scope.loading_area = false; 
-    },function(error){
-      $scope.loading_area = false;      
-      $location.path("/");
-    }
-  );
+  });
 }]);
 
 app.controller('areaProcesosController',
@@ -26,11 +23,7 @@ app.controller('areaProcesosController',
       currentAreaService.setArea(data.area.id,data.area.nombre);
       $scope.procesos = data.procesos;
       $scope.loading_area = false; 
-    },function(error){
-      $location.path("/");      
-      $scope.loading_area = false;
-    }
-  );
+  });
 }]);
 
 app.controller('sidebarAreaController',
