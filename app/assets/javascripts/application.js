@@ -15,4 +15,5 @@
 //= require js/bootstrap.js
 //= require js/app.js
 //= require jquery.autocomplete.js
+//= require jquery.toastr.js
 

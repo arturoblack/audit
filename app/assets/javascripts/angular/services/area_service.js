@@ -8,7 +8,9 @@ app.factory('AreaService',
       create: { method: 'POST' },
       update: { method:'PUT' },
       procesos: { method: 'GET',
-                params: {areaId: '@areaId',procesos: 'procesos'}}
+                params: {areaId: '@areaId',procesos: 'procesos'}},
+      new_proceso: { method: 'POST',
+                params: {areaId: '@areaId',procesos: 'procesos'}},          
     }
   );
 }]);

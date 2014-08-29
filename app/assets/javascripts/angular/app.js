@@ -18,15 +18,18 @@ app.config(['$httpProvider',function($httpProvider) {
     $httpProvider.interceptors.push('httpRequestInterceptor');
 }]);
 
-app.factory('httpRequestInterceptor',['$q', '$location',
-  function ($q, $location) {
+app.factory('httpRequestInterceptor',['$q', '$location','messagesService',
+  function ($q, $location,messagesService) {
     return {
         'responseError': function(rejection) {
             // do something on error
             if(rejection.status === 404){
               $location.path("/404/");
-              return $q.reject(rejection);
+            }else if(rejection.status === 401){
+              $location.path("/");
+              messagesService.show_message('error', 'Unauthorized');
             }
+            return $q.reject(rejection);
          }
      };
 }]);

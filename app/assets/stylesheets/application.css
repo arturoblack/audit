@@ -12,6 +12,7 @@
  *= require css/bootstrap.css
  *= require css/admin.css
  *= require css/font-awesome.css
+ *= require jquery.toastr.css
  *= require angular-loading-bar/src/loading-bar.css
  *= require_self
  */

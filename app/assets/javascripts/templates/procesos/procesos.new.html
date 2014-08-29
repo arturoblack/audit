@@ -1,0 +1,22 @@
+<div class="col-sm-12 col-md-12" ng-controller='newProcesoController'>  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Nuevo proceso</h3>
+    </div>
+    <div class="panel-body">
+      <form ng-submit="crearProceso()">
+        <div ng-class="{'has-error': errors.nombre}">
+          <div class="input-group">
+            <input ng-model='nuevo_proceso.nombre' type="text" class="form-control" placeholder='Nombre del proceso'>
+            <span class="input-group-btn">
+                <button ng-disabled="loading" class="btn btn-info btn-flat" type="submit">Guardar</button>              
+            </span>
+          </div>
+          <p ng-show='errors.nombre' class="control-label" for="inputError">
+            <i class="fa fa-times-circle-o"></i> {{errors.nombre.join()}}
+          </p>
+        </div>
+      </form>
+    </div><!-- panel-body -->
+  </div><!-- panel -->
+</div>

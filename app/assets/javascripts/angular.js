@@ -10,6 +10,7 @@
 //= require angular/directives/autocomplete_directive.js
 
 //= require angular/services/area_service.js
+//= require angular/services/messages_service.js
 
 //= require angular/controllers/sidebar_controllers.js
 //= require angular/controllers/areas_controllers.js

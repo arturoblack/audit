@@ -3,7 +3,7 @@ class Proceso < ActiveRecord::Base
   has_many :evidences
   validates_presence_of :nombre, :area_id
   validates :nombre, length: { maximum: 250 }
-  validates_uniqueness_of :nombre, :scope => :area_id
+  validates_uniqueness_of :nombre, :scope => :area_id, :case_sensitive => false
 
   validate :validate_area_exists
 
