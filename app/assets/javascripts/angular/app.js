@@ -1,6 +1,15 @@
 var app = angular.module('myApp',
-          ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp','areasApp',
-          'procesosApp'])
+          ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp',
+          'areasApp','titleService','procesosApp'])
+app.run(['$rootScope','titleService','$location',
+  function($rootScope,titleService,$location){
+  $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
+    if(currentRoute.$$route.title){
+      titleService.setTitle(currentRoute.$$route.title)
+    }
+  });
+}])
+  
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }])
@@ -9,8 +18,10 @@ app.config(['$routeProvider', '$locationProvider',
     $routeProvider
       .when('/', {
         templateUrl: "index.html",
+        title: 'Home'
       }).when('/404', {
-        templateUrl : '404.html'
+        templateUrl : '404.html',
+        title: '404'
       });
     $locationProvider.html5Mode(true);  
 }]);

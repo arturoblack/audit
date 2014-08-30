@@ -6,12 +6,10 @@ app.config(['$routeProvider', '$locationProvider',
     $routeProvider
       .when('/areas/:areaId', {
         templateUrl: "areas/show.html",
-        controller: 'showAreaController',
-        title: 'Nombre del area'
+        controller: 'showAreaController'
       }).when('/areas/:areaId/procesos', {
         templateUrl: "procesos/index.html",
-        controller: 'areaProcesosController',
-        title: 'Nombre del area'
+        controller: 'areaProcesosController'
       })
     $locationProvider.html5Mode(true);  
 }]);

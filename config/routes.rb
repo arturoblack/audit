@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     resources :areas, only: [:show] do
-      resources :procesos, except: [:new,:edit,:show,:destroy]
+      resources :procesos, only: [:index, :create]
     end
+    resources :procesos, only: [] do
+      resources :evidences, only: [:index, :create]
+    end
+
     scope '/search' do
       match '/areas',to: 'areas#search_areas', as:'search_areas', via: 'get'
     end

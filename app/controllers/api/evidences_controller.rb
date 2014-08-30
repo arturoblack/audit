@@ -1,8 +1,8 @@
-class Api::ProcesosController < ApiController
+class Api::EvidencesController < ApiController
   def index
     sleep 0.5
-    @area = Area.find(params[:area_id])
-    @procesos = @area.procesos
+    @proceso = Proceso.find(params[:proceso_id])
+    @evidences = @proceso.evidences
   end
   def create
     area = Area.find(params[:area_id])
@@ -16,7 +16,7 @@ class Api::ProcesosController < ApiController
     end             
   end
   private
-  def proceso_params
-    params.require(:proceso).permit(:nombre) 
+  def evidences_params
+    params.require(:evidence).permit(:nombre) 
   end
 end

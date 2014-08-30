@@ -3,7 +3,7 @@ var app = angular.module('titleService',['ngResource'])
 app.factory('titleService',
   ['$document', function($document) {
   var suffix, title;
-  suffix = title = "Clinicas Libres";
+  suffix = title = "AuditUCCI";
   return {
     setSuffix: function(s) {
       return suffix = s;

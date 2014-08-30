@@ -12,8 +12,8 @@
         <div class="nav-tabs-custom" style="cursor: move;">
           <ul class="nav nav-tabs pull-right">
             <li class="pull-left header"><i class="fa fa-inbox"></i> Procesos</li>
-            <li class="active"><a href ng-click='listarProcesos()' data-toggle="tab">Listado</a></li>
-            <li><a href ng-click='nuevoProceso()' data-toggle="tab">Nuevo</a></li>            
+            <li ng-class="{'active': state == 'procesos'}"><a href ng-click='listarProcesos()' data-toggle="tab">Listado</a></li>
+            <li ng-class="{'active': state == 'procesos.new'}"><a href ng-click='nuevoProceso()' data-toggle="tab">Nuevo proceso</a></li>            
           </ul>
         </div>
       </section>  
@@ -25,6 +25,9 @@
         </div>
         <div ng-switch-when="procesos.new">
           <div ng-include src="'procesos/procesos.new.html'"></div>
+        </div>
+        <div ng-switch-when="procesos.evidencias">
+          <div ng-include src="'procesos/procesos.evidencias.html'"></div>
         </div>
       </div>      
     </div>
