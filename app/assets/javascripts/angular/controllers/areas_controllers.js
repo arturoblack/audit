@@ -1,5 +1,6 @@
 var app = angular.module('areasApp.Controllers',
-  ['ngRoute','areaService','procesoService','messagesService','titleService'])
+  ['ngRoute', 'ui.bootstrap','areaService','procesoService','messagesService','titleService'])
+
 app.controller('showAreaController',
   ['$scope', '$routeParams', '$location', 'AreaService', 'currentAreaService','titleService',
   function($scope, $routeParams, $location, AreaService, currentAreaService, titleService){
@@ -60,20 +61,6 @@ app.controller('areaProcesosController',
     $scope.state = 'procesos.evidencias'     
   }
 }]);
-
-app.controller('procesoEvidencesController',
-  ['$scope','currentProcessService', 'ProcesoService',
-  function($scope,currentProcessService,ProcesoService){
-  $scope.loading_proceso = true;
-  $scope.proceso = {id: currentProcessService.id}
-  ProcesoService.evidences({ procesoId: $scope.proceso.id}).$promise.then(
-    function(data) {
-      $scope.proceso = data.proceso
-      $scope.evidences = data.evidences
-      $scope.loading_proceso = false;
-  })  
-}]);
-
 app.controller('newProcesoController',
   ['$scope', '$routeParams', '$route', 'AreaService','messagesService',
    function($scope, $routeParams, $route, AreaService, messagesService){
@@ -81,7 +68,7 @@ app.controller('newProcesoController',
     $scope.loading = false;
     $scope.crearProceso = function(){
       $scope.loading = true;
-      AreaService.new_proceso({ areaId: $routeParams.areaId, proceso: $scope.nuevo_proceso}).
+      AreaService.create_proceso({ areaId: $routeParams.areaId, proceso: $scope.nuevo_proceso}).
       $promise.then(
         function(data) {
           $route.reload();
@@ -93,5 +80,63 @@ app.controller('newProcesoController',
     }
 }]);
 
+
+
+app.controller('procesoEvidencesController',
+  ['$scope', '$modal','currentProcessService', 'ProcesoService',
+  function($scope, $modal,currentProcessService,ProcesoService){
+  $scope.loading_proceso = true;
+  $scope.proceso = {id: currentProcessService.id}
+  ProcesoService.evidences({ procesoId: $scope.proceso.id}).$promise.then(
+    function(data) {
+      $scope.proceso = data.proceso
+      $scope.evidences = data.evidences
+      $scope.loading_proceso = false;
+  });
+  $scope.newEvidence = function(proceso){
+    var modalInstance = $modal.open({
+      templateUrl: 'procesos/procesos.evidencia.new.html',
+      controller: 'newEvidenceController',
+      resolve: {
+        proceso: function () {
+          return proceso;
+        }
+      }
+    });
+    modalInstance.result.then(function (evidence) {
+      $scope.proceso.total_evidencias ++;
+      $scope.evidences.unshift(evidence)
+    });
+  }
+}]);
+
+app.controller('newEvidenceController',
+  ['$scope', '$modalInstance', 'proceso','messagesService',
+   'currentAreaService', 'ProcesoService',
+  function($scope, $modalInstance, proceso, messagesService, 
+    currentAreaService, ProcesoService) {
+
+  $scope.proceso = proceso;
+  $scope.area = currentAreaService
+  $scope.new_evidence = {nombre: ''}
+  $scope.loading = false;
+  $scope.ok = function () {
+    $scope.loading = true;
+    ProcesoService.create_evidence({ procesoId: $scope.proceso.id,
+     evidence: $scope.new_evidence}).$promise.then(
+      function(data) {
+        $scope.loading = false;
+        $modalInstance.close(data.evidence);
+        messagesService.show_message('success', data.message);
+    },function(error){
+      $scope.loading = false;
+      $scope.errors = error.data.data.errors;
+    });
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+}]);
 
 

@@ -5,18 +5,18 @@ class Api::EvidencesController < ApiController
     @evidences = @proceso.evidences
   end
   def create
-    area = Area.find(params[:area_id])
-    proceso = area.procesos.build(proceso_params)
-    if proceso.save
-      render json: {message: "El proceso '#{proceso.nombre}' fue creado correctamente.",
-                    proceso: {id: proceso.id, nombre: proceso.nombre}}, status: :created
+    proceso = Proceso.find(params[:proceso_id])
+    evidence = proceso.evidences.build(evidence_params)
+    if evidence.save
+      render json: {message: "La evidencia '#{evidence.nombre}' fue creada correctamente.",
+                    evidence: {id: evidence.id, nombre: evidence.nombre}}, status: :created
     else
       render json: {error: 'No procesado.',
-                    data: {errors: proceso.errors.messages}}, status: 422
+                    data: {errors: evidence.errors.messages}}, status: 422
     end             
   end
   private
-  def evidences_params
+  def evidence_params
     params.require(:evidence).permit(:nombre) 
   end
 end

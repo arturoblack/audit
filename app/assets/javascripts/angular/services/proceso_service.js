@@ -6,7 +6,7 @@ app.factory('ProcesoService',
     {
       evidences: { method: 'GET',
                 params: {procesoId: '@procesoId',evidences: 'evidences'}},
-      new_evidence: { method: 'POST',
+      create_evidence: { method: 'POST',
                 params: {procesoId: '@procesoId',evidences: 'evidences'}},          
     }
   );

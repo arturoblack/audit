@@ -2,6 +2,7 @@
 //= require angular-resource/angular-resource.min.js
 //= require angular-route/angular-route.min.js
 //= require angular-animate/angular-animate.min.js
+//= require angular-bootstrap/ui-bootstrap-tpls.min.js
 //= require angular-rails-templates
 //= require_tree ./templates
 //external plugins
