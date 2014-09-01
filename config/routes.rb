@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     resources :areas, only: [:show] do
       resources :procesos, only: [:index, :create]
+      resources :auditorias, only: [:index, :create]
     end
     resources :procesos, only: [] do
       resources :evidences, only: [:index, :create]

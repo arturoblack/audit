@@ -1,6 +1,7 @@
 var app = angular.module('myApp',
           ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp',
-          'areasApp','titleService','procesosApp'])
+          'areasApp','titleService','procesosApp', 'auditoriasApp'])
+
 app.run(['$rootScope','titleService','$location',
   function($rootScope,titleService,$location){
   $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
@@ -9,7 +10,7 @@ app.run(['$rootScope','titleService','$location',
     }
   });
 }])
-  
+
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }])
@@ -26,21 +27,22 @@ app.config(['$routeProvider', '$locationProvider',
     $locationProvider.html5Mode(true);  
 }]);
 app.config(['$httpProvider',function($httpProvider) {
-    $httpProvider.interceptors.push('httpRequestInterceptor');
+  $httpProvider.interceptors.push('httpRequestInterceptor');
+  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 }]);
 
 app.factory('httpRequestInterceptor',['$q', '$location','messagesService',
   function ($q, $location,messagesService) {
     return {
-        'responseError': function(rejection) {
-            // do something on error
-            if(rejection.status === 404){
-              $location.path("/404/");
-            }else if(rejection.status === 401){
-              $location.path("/");
-              messagesService.show_message('error', 'Unauthorized');
-            }
-            return $q.reject(rejection);
-         }
+      'responseError': function(rejection) {
+        // do something on error
+        if(rejection.status === 404){
+          $location.path("/404/");
+        }else if(rejection.status === 401){
+          $location.path("/");
+          messagesService.show_message('error', 'Unauthorized');
+        }
+        return $q.reject(rejection);
+       }
      };
 }]);

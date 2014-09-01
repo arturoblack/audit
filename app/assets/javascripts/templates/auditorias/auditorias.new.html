@@ -1,0 +1,33 @@
+<div class="col-sm-6 col-md-6" ng-controller='newAuditoriaController'>  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Nueva auditoria</h3>
+    </div>
+    <div class="panel-body">
+      <form ng-submit="crearAuditoria()">
+        <div class="form-group" ng-class="{'has-error': errors.codigo}">
+          <label>Código</label>
+          <input ng-model='nueva_auditoria.codigo' class="form-control" placeholder="Código de la auditoria" type="text">
+          <p ng-show='errors.codigo' class="control-label" for="inputError">
+            <i class="fa fa-times-circle-o"></i> {{errors.codigo.join()}}
+          </p> 
+        </div>
+        <div class="form-group" ng-class="{'has-error': errors.fecha_prevista}">
+          <label>Fecha prevista</label>
+          <center><datepicker ng-model="nueva_auditoria.fecha_prevista" show-weeks="false" class="well well-sm"></datepicker></center>
+          <p ng-show='errors.fecha_prevista' class="control-label" for="inputError">
+            <i class="fa fa-times-circle-o"></i> {{errors.fecha_prevista.join()}}
+          </p> 
+        </div>
+        
+              
+        <center>
+          <button ng-disabled="loading" class="btn btn-info btn-flat" type="submit">Guardar
+          </button>
+        </center>  
+          
+        </div>
+      </form>
+    </div><!-- panel-body -->
+  </div><!-- panel -->
+</div>

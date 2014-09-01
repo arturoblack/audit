@@ -2,7 +2,7 @@
 //= require angular-resource/angular-resource.min.js
 //= require angular-route/angular-route.min.js
 //= require angular-animate/angular-animate.min.js
-//= require angular-bootstrap/ui-bootstrap-tpls.min.js
+//= require angular-bootstrap/ui-bootstrap-tpls.js
 //= require angular-rails-templates
 //= require_tree ./templates
 //external plugins
@@ -17,10 +17,11 @@
 
 //= require angular/controllers/sidebar_controllers.js
 //= require angular/controllers/areas_controllers.js
-
+//= require angular/controllers/auditorias_controllers.js
 
 //= require angular/procesos.js
 //= require angular/areas.js
+//= require angular/auditorias.js
 //= require angular/sidebar.js
 //= require angular/app.js
 

@@ -2,15 +2,20 @@ var app = angular.module('areaService',['ngResource'])
 
 app.factory('AreaService',
   ['$resource', function ($resource) {
-  return $resource('/api/areas/:areaId/:procesos.:format', {format: 'json'},
+  return $resource('/api/areas/:areaId/:resources.:format', {format: 'json'},
     {
       query: {isArray: false},
       create: { method: 'POST' },
       update: { method:'PUT' },
       procesos: { method: 'GET',
-                params: {areaId: '@areaId',procesos: 'procesos'}},
+                params: {areaId: '@areaId',resources: 'procesos'}},
       create_proceso: { method: 'POST',
-                params: {areaId: '@areaId',procesos: 'procesos'}},          
+                params: {areaId: '@areaId',resources: 'procesos'}},           
+      auditorias: { method: 'GET',
+                params: {areaId: '@areaId',resources: 'auditorias'}},
+      create_auditoria: { method: 'POST',
+                params: {areaId: '@areaId',resources: 'auditorias'}}                    
+               
     }
   );
 }]);
