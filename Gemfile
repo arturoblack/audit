@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'aasm'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,6 +26,7 @@ gem 'spring',        group: :development
 gem 'bower-rails'
 gem 'angular-rails-templates', '~>0.1'
 gem 'validates_timeliness', '~> 3.0'
+gem 'activerecord-import'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

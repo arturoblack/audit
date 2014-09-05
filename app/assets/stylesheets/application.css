@@ -21,3 +21,12 @@
 .autocomplete-no-suggestion { padding: 2px 5px;}
 .autocomplete-selected { background: #D5DED9; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+/*Para laanimacion de show hide en agenda evento*/
+.show-hide-animation {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.show-hide-animation.ng-hide {
+  opacity:0;
+}

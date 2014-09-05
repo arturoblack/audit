@@ -16,4 +16,9 @@
 //= require js/app.js
 //= require jquery.autocomplete.js
 //= require jquery.toastr.js
+//= require jquery.moment.min.js
+//= require underscore/underscore-min.js
+//= require highcharts.js
+//= require exporting.js
+
 

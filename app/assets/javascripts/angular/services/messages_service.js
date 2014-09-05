@@ -9,6 +9,9 @@ angular.module('messagesService', []).factory('messagesService', function(){
       case 'success':
         toastr.success(message, "OK")
         break;
+      case 'warning':
+        toastr.warning(message, "Mensaje")
+        break;
     }
   };
   return message;

@@ -1,1 +1,72 @@
-<h1>Listado</h1>
+<div ng-repeat="auditoria in auditorias" class="col-sm-6 col-md-6">
+  <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <i class="fa fa-bullhorn"></i> {{auditoria.codigo}}          
+        </h3>        
+      </div>
+      <div class="panel-body">
+        <div class="box box-solid bg-light-blue-gradient">
+          <div class="box-header">
+            <div ng-if="auditoria.state == 'programada' || auditoria.state == 'evaluacion'"class="btn-group pull-right box-tools">
+              <button type="button" class="btn btn-primary btn-sm pull-right dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-angle-down"></i>
+              </button>
+              <ul class="dropdown-menu " role="menu">
+                <li ng-if="auditoria.state == 'programada'"><a href ng-click='empezarAuditoria(auditoria)'>Empezar auditoria</a></li>
+                <li ng-if="auditoria.state == 'evaluacion'"><a href ng-click='listarEvidencias(proceso.id)'>Verificar cumplimiento</a></li>
+              </ul>
+            </div>
+            <i class="fa fa-th"></i>
+          </div>
+          <div class="box-body border-radius-none">
+            <div ng-if="auditoria.state == 'programada'" class="chart" style="min-height:45px">
+              <center ng-if='empezando_evaluacion'>
+                <strong>...Procesando...</strong>
+              </center>
+              <center>Fecha programada</center>
+              <center>{{auditoria.fecha_programada | date:"dd 'de' MMM yyyy"}}</center>
+            </div>
+            <div ng-if="auditoria.state != 'programada'" class="chart" style="min-height:45px">
+              <center>Grafica de barras</center>
+            </div>                                    
+          </div><!-- /.box-body -->
+
+          <div ng-if="auditoria.state == 'programada'" class="box-footer no-border">
+            <div class="row">
+              <center><div class="knob-label">No empezada</div></center>
+            </div><!-- /.row -->
+          </div><!-- /.box-footer -->
+
+          <div ng-if="auditoria.state == 'evaluacion' || auditoria.state == 'cumplimiento' " class="box-footer no-border">
+            <div class="row">
+              <center style="color:#3c8dbc">PRIMERA EVALUACIÓN</center><br>
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <div style="color:#3c8dbc">
+                  <strong>{{auditoria.total_evaluaciones}}</strong>
+                </div>
+                <div class="knob-label">Evidencias</div>
+              </div><!-- ./col -->
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <div style="margin-top:5px">
+                  <div class="progress xs" style='margin-bottom:8px'>
+                    <div class="progress-bar progress-bar-warning" style="width: {{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones}}%;">
+                    </div>
+                  </div>
+                  <div class="knob-label">{{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones}}% Evaluado</div>
+                </div><!-- ./col -->
+              </div>  
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <div style="color:#3c8dbc">
+                  <button ng-click='verEvaluacionesIniciales(auditoria)' class="btn btn-warning btn-sm">
+                    <i class="fa fa-folder-open"> Abrir</i>
+                  </button>                  
+                </div>
+                <div class="knob-label"></div>
+              </div><!-- ./col -->
+            </div><!-- /.row -->
+          </div><!-- /.box-footer -->
+        </div>
+      </div><!-- panel-body -->
+  </div><!-- panel -->
+</div>

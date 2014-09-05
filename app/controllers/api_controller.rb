@@ -8,6 +8,9 @@ class ApiController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do |exception|
     error_handling(exception, 'Record not found', :not_found)
   end
+  rescue_from AASM::InvalidTransition do |exception|
+    error_handling(exception, 'Invalid transition')
+  end
   #rescue_from CanCan::AccessDenied do |exception|
   #  error_handling(exception, 401)
   #end

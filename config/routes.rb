@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     resources :procesos, only: [] do
       resources :evidences, only: [:index, :create]
     end
+    resources :auditorias, only: [:show] do
+      resources :evaluaciones, only:[:update]
+      match '/empezar_auditoria', to: 'auditorias#empezar_auditoria', via: 'post'
+      match '/evaluaciones_iniciales', to: 'auditorias#evaluaciones_iniciales', via: 'get'
+    end
 
     scope '/search' do
       match '/areas',to: 'areas#search_areas', as:'search_areas', via: 'get'

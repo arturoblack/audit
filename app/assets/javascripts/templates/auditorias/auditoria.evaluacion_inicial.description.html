@@ -1,0 +1,16 @@
+<table class="table table-bordered nomargin">
+  <tbody>
+    <tr>
+      <td>Observación:</td>
+      <td>{{eva.observacion || 'Sin data.'}}</td>
+    </tr>
+    <tr>
+      <td>Plan de acción:</td>
+      <td>{{eva.plan_accion || 'Sin data.'}}</td>
+    </tr>
+    <tr>
+      <td>Fecha de cumplimineto:</td>
+      <td>{{eva.fecha_cumplimiento | date:"dd 'de' MMM yyyy"}}</td>
+    </tr>
+  </tbody>
+</table>

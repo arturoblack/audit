@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901163320) do
+ActiveRecord::Schema.define(version: 20140901211445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,11 +24,32 @@ ActiveRecord::Schema.define(version: 20140901163320) do
 
   create_table "auditorias", force: true do |t|
     t.string   "codigo"
-    t.date     "fecha_prevista"
+    t.date     "fecha_programada"
     t.integer  "area_id"
+    t.string   "aasm_state"
+    t.integer  "total_evaluaciones",     default: 0
+    t.integer  "iniciales_evaluadas",    default: 0
+    t.integer  "cumplimiento_evaluadas", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "evaluaciones", force: true do |t|
+    t.integer  "auditoria_id"
+    t.integer  "evidence_id"
+    t.integer  "proceso_id"
+    t.date     "fecha_evaluacion"
+    t.boolean  "cumplimiento"
+    t.string   "observacion"
+    t.text     "plan_accion"
+    t.date     "fecha_cumplimiento"
+    t.string   "tipo"
+    t.boolean  "evaluada"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "evaluaciones", ["tipo", "auditoria_id"], name: "index_evaluaciones_on_tipo_and_auditoria_id", using: :btree
 
   create_table "evidences", force: true do |t|
     t.string   "nombre"
