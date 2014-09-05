@@ -153,8 +153,10 @@ app.controller('graficaInicialesController',
               type: 'pie',
               name: 'Porcentaje',
               data: [
-                  ['Evidencias cumplidas',   iniciales_cumplidas*100/auditoria.total_evaluaciones],
-                  ['Evidencias no cumplidas', iniciales_incumplidas*100/auditoria.total_evaluaciones]
+                  ['Evidencias cumplidas (' + iniciales_cumplidas + ')',
+                  iniciales_cumplidas*100/auditoria.total_evaluaciones],
+                  ['Evidencias no cumplidas (' + iniciales_incumplidas + ')',
+                  iniciales_incumplidas*100/auditoria.total_evaluaciones]
               ]
           }]
       });
