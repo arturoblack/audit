@@ -427,3 +427,12 @@ app.filter('booleano_verificacion', function() {
     }    
   };
 });
+app.filter('myDecimal', ['$filter', function ($filter) {
+  return function(input) {
+    input = parseFloat(input);
+    if(input % 1 === 0) {
+      input = input.toFixed(0);
+    }
+    return input;
+  };
+}]);
