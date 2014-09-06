@@ -31,6 +31,24 @@ class Api::AuditoriasController < ApiController
     @evaluaciones_iniciales = @auditoria.evaluaciones_iniciales.includes(:proceso,:evidence)
   end
 
+
+  def evaluar_cumplimiento
+    auditoria = Auditoria.find(params[:auditoria_id])
+    if auditoria.total_evaluaciones == auditoria.iniciales_evaluadas
+      auditoria.verificar_cumplimiento!
+      render json: {message: 'UD. puede empezar con las evaluaciones de cumplimiento.'}
+    else
+      render json: {error: 'No procesado.',
+                    description: 'Finaliza la evaluación inicial de las evidencias'},
+                    status: 400
+    end
+  end
+
+  def evaluaciones_de_cumplimiento
+    @auditoria = Auditoria.find(params[:auditoria_id]) 
+    @evaluaciones_de_cumplimiento = @auditoria.evaluaciones_de_cumplimiento.includes(:proceso,:evidence)
+  end
+
   private
   def auditoria_params
     params.require(:auditoria).permit(:codigo,:fecha_programada) 

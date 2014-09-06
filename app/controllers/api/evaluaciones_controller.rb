@@ -2,7 +2,7 @@ class Api::EvaluacionesController < ApiController
   def update
     @auditoria = Auditoria.find(params[:auditoria_id])
     @evaluacion = @auditoria.evaluaciones.find(params[:id])
-    if @auditoria.evaluacion? && @evaluacion.update_attributes(evaluacion_params)
+    if @evaluacion.update_attributes(evaluacion_params)
       render
     else
       render json: {error: 'No procesado.',

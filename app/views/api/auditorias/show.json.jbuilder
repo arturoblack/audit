@@ -6,4 +6,5 @@ json.auditoria do
   json.iniciales_evaluadas @auditoria.iniciales_evaluadas
   json.cumplimiento_evaluadas @auditoria.cumplimiento_evaluadas
   json.iniciales_cumplidas @auditoria.evaluaciones_iniciales.where(cumplimiento:true).count
+  json.finales_cumplidas @auditoria.evaluaciones_de_cumplimiento.where(cumplimiento:true).count
 end

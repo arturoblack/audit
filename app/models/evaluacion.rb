@@ -19,9 +19,10 @@ class Evaluacion < ActiveRecord::Base
   def data_for_first_update
     unless self.evaluada?
       if self.persisted?
-        self.fecha_evaluacion = Date.today()
-        self.auditoria.increment!(:iniciales_evaluadas)
+        self.fecha_evaluacion = Date.today()        
         self.evaluada = true
+        self.tipo == 'inicial' ? self.auditoria.increment!(:iniciales_evaluadas) :
+                                 self.auditoria.increment!(:cumplimiento_evaluadas) 
       end
     end
   end

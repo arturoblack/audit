@@ -25,8 +25,8 @@ class Auditoria < ActiveRecord::Base
       transitions :from => :programada, :to => :evaluacion
     end
 
-    event :verificar do
-      transitions :from => :evaluacion, :to => :cumplimiento
+    event :verificar_cumplimiento, :after => Proc.new { create_evaluaciones_de_cumplimiento } do
+      transitions :from => :evaluacion, :to => :cumplimiento, :guard => :finished_evaluacion?
     end
 
     event :finalizar do
@@ -35,6 +35,9 @@ class Auditoria < ActiveRecord::Base
   end
 
   private
+  def finished_evaluacion?
+    self.total_evaluaciones == self.iniciales_evaluadas
+  end
   def validate_area_exists
     errors[:area_id] << 'not registered.' unless
                        Area.find_by_id(self.area_id)
@@ -43,10 +46,25 @@ class Auditoria < ActiveRecord::Base
     area = Area.find(self.area_id)
     total = 0
     area.evidences.each do |evidence|
-      ol = self.evaluaciones_iniciales.create(evidence_id: evidence.id,
+      self.evaluaciones_iniciales.create(evidence_id: evidence.id,
                         proceso_id: evidence.proceso_id)
       total += 1
     end
     self.update_attributes(total_evaluaciones: total) 
+  end
+  def create_evaluaciones_de_cumplimiento
+    cumplidas = 0
+    self.evaluaciones_iniciales.each do |evaluacion|
+      if evaluacion.cumplimiento
+        cumplidas += 1
+        self.evaluaciones_de_cumplimiento.create(evidence_id: evaluacion.evidence_id,
+          proceso_id:evaluacion.proceso_id, evaluada:true, fecha_evaluacion: Date.today,
+          cumplimiento:true)
+      else
+        self.evaluaciones_de_cumplimiento.create(evidence_id: evaluacion.evidence_id,
+                                                proceso_id:evaluacion.proceso_id)
+      end
+    end
+    self.update_attributes(cumplimiento_evaluadas: cumplidas) 
   end
 end

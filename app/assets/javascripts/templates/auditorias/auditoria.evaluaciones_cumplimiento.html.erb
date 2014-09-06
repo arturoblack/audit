@@ -1,4 +1,4 @@
-<div ng-controller='evaluacionesInicialesController' >
+<div ng-controller='evaluacionesCumplimientoController' >
   <section ng-show="loading_auditoria" class="content-header">
     <center><%=image_tag("loading.gif")%></center>
   </section>   
@@ -14,22 +14,19 @@
           </h3> 
         </div>
         <div class="box-body border-radius-none">
-          <div ng-show="auditoria.total_evaluaciones != auditoria.iniciales_evaluadas" class="chart" style="min-height:45px">
-            <center>Para mostrar la gráfica se debe haber concluido en un 100% las evaluaciones.</center>
+          <div ng-show="auditoria.total_evaluaciones != auditoria.cumplimiento_evaluadas" class="chart" style="min-height:45px">
+            <center>Para mostrar la gráfica se debe haber concluido en un 100% las evaluaciones de cumplimiento.</center>
           </div>
-          <div ng-show="auditoria.total_evaluaciones == auditoria.iniciales_evaluadas" class="chart" style="min-height:45px">
+          <div ng-show="auditoria.total_evaluaciones == auditoria.cumplimiento_evaluadas" class="chart" style="min-height:45px">
             <div>
               <center>
                 <button ng-click='toggleGrafica()' class="btn btn-primary btn-sm"> 
                   <i class="fa fa-bar-chart-o"></i>&nbsp {{grafica.text}}
                 </button>
-                <button ng-if="auditoria.state == 'cumplimiento' || auditoria.state=='finalizada'" ng-click='verEvaluacionesCumplimiento(auditoria)' title='Ver evaluaciones de cumplimiento' class="btn btn-danger btn-sm"> 
-                  <i class="fa fa-angle-right"></i>
-                </button>
               </center><br>
             </div>
             <div ng-if="grafica.status == 'on'" style='background: white;'>
-              <div ng-controller='graficaInicialesController' style='color: black;'>
+              <div ng-controller='graficaCumplimientoController' style='color: black;'>
                 <center ng-show='loading'><%=image_tag("loading.gif")%></center>
                 <div id="container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto">
                 </div>
@@ -38,31 +35,60 @@
           </div>                                    
         </div><!-- /.box-body -->
         <div class="box-footer no-border">
-            <div class="row">
-              <center style="color:#3c8dbc">PRIMERA EVALUACIÓN</center><br>
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <div style="color:#3c8dbc">
-                  <strong>{{auditoria.total_evaluaciones}}</strong>
-                </div>
-                <div class="knob-label">Total de evidencias</div>
-              </div><!-- ./col -->
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <div style="margin-top:5px">
-                  <div class="progress xs" style='margin-bottom:8px'>
-                    <div class="progress-bar progress-bar-warning" style="width: {{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones}}%;">
-                    </div>
+          <div class="row">
+            <center style="color:#3c8dbc">PRIMERA EVALUACIÓN</center><br>
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="color:#3c8dbc">
+                <strong>{{auditoria.total_evaluaciones}}</strong>
+              </div>
+              <div class="knob-label">Total de evidencias</div>
+            </div><!-- ./col -->
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="margin-top:5px">
+                <div class="progress xs" style='margin-bottom:8px'>
+                  <div class="progress-bar progress-bar-warning" style="width: {{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones}}%;">
                   </div>
-                  <div class="knob-label">{{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones | number:2}}% Evaluado</div>
-                </div><!-- ./col -->
-              </div>  
-              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                <div style="color:#3c8dbc">
-                   <strong>{{auditoria.iniciales_evaluadas}}</strong>                 
                 </div>
-                <div class="knob-label">Evidencias evaluadas</div>
+                <div class="knob-label">{{auditoria.iniciales_evaluadas*100/auditoria.total_evaluaciones | number:2}}% Evaluado</div>
               </div><!-- ./col -->
-            </div><!-- /.row -->
-          </div><!-- /.box-footer -->
+            </div>  
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="color:#3c8dbc">
+                <button ng-click='verEvaluacionesIniciales(auditoria)' class="btn btn-warning btn-sm">
+                  <i class="fa fa-folder-open"> Abrir</i>
+                </button>                  
+              </div>
+              <div class="knob-label"></div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+
+        <div class="box-footer no-border">
+          <div class="row">
+            <center style="color:#3c8dbc">EVALUACIÓN DE CUMPLIMIENTO</center><br>
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="color:#3c8dbc">
+                <strong>{{auditoria.total_evaluaciones}}</strong>
+              </div>
+              <div class="knob-label">Evidencias</div>
+            </div><!-- ./col -->
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="margin-top:5px">
+                <div class="progress xs" style='margin-bottom:8px'>
+                  <div class="progress-bar progress-bar-danger" style="width: {{auditoria.cumplimiento_evaluadas*100/auditoria.total_evaluaciones}}%;">
+                  </div>
+                </div>
+                <div class="knob-label">{{auditoria.cumplimiento_evaluadas*100/auditoria.total_evaluaciones | number:2}}% Evaluado</div>
+              </div><!-- ./col -->
+            </div>  
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div style="color:#3c8dbc">
+                 <strong>{{auditoria.cumplimiento_evaluadas}}</strong>                 
+              </div>
+              <div class="knob-label">Evidencias evaluadas</div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+        </div><!-- /.box-footer -->
       </div>      
     </div>
 
@@ -75,7 +101,7 @@
       </div>
     </div>
 
-    <div ng-repeat='elemento in evaluaciones_iniciales'>
+    <div ng-repeat='elemento in evaluaciones_de_cumplimiento'>
       <div ng-show="selected_proceso == undefined || selected_proceso == elemento[0]['proceso']">
         <div class="row">
           <div class="col-xs-12">
@@ -99,12 +125,11 @@
                     <th>{{eva.evaluada | booleano}}</th>
                     <th>{{eva.fecha_evaluacion | date:"dd 'de' MMM yyyy"}}</th>
                     <td><strong>{{(eva.cumplimiento | booleano_verificacion)}}</strong></td>
-                    <td >
+                    <td>
                       <button popover-trigger="mouseenter" popover-placement="left" popover-template="{{'auditorias/auditoria.evaluacion_inicial.description.html'}}" class="btn btn-info btn-sm">
                         <i class="fa fa-angle-left"></i>
                       </button>
-
-                      <button ng-if="auditoria.state == 'evaluacion'" ng-click='evaluar(eva)' class="btn btn-primary btn-sm">
+                      <button ng-if="auditoria.state == 'cumplimiento'" ng-click='evaluar(eva)' class="btn btn-primary btn-sm">
                         <i class="fa fa-pencil-square-o"></i>
                       </button>
                     </td>

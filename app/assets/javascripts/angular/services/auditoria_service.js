@@ -6,8 +6,12 @@ app.factory('AuditoriaService',
     {
       empezar_auditoria: { method: 'POST',
                 params: {auditoriaId: '@auditoriaId',resource: 'empezar_auditoria'}},
+      verificar_cumplimiento: { method: 'POST',
+                params: {auditoriaId: '@auditoriaId',resource: 'evaluar_cumplimiento'}},
       evaluaciones_iniciales:{method: 'GET',
                 params: {auditoriaId: '@auditoriaId',resource: 'evaluaciones_iniciales'}},
+      evaluaciones_de_cumplimiento:{method: 'GET',
+                params: {auditoriaId: '@auditoriaId',resource: 'evaluaciones_de_cumplimiento'}},
       update_evaluacion: { method: 'PUT',
                 params: {auditoriaId: '@auditoriaId',resource: 'evaluaciones',
                         evaluacionId: '@evaluacionId'}},                             
@@ -24,6 +28,7 @@ app.factory('currentAuditoriaService',
   }
   current_auditoria.resetAuditoria = function(){
     this.id = null;
+    this.codigo = null;
   }
   return current_auditoria;
 }])
