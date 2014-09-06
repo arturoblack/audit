@@ -49,6 +49,17 @@ class Api::AuditoriasController < ApiController
     @evaluaciones_de_cumplimiento = @auditoria.evaluaciones_de_cumplimiento.includes(:proceso,:evidence)
   end
 
+  def finalizar_auditoria
+    auditoria = Auditoria.find(params[:auditoria_id])
+    if auditoria.total_evaluaciones == auditoria.cumplimiento_evaluadas
+      auditoria.finalizar!
+      render json: {message: "La auditoría con código #{auditoria.codigo} ha sido finalizada."}
+    else
+      render json: {error: 'No procesado.',
+                    description: 'No puede finalizar esta auditoría sin antes concluir las evaluaciones.'},
+                    status: 400
+    end
+  end
   private
   def auditoria_params
     params.require(:auditoria).permit(:codigo,:fecha_programada) 

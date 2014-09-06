@@ -3,6 +3,7 @@ class Api::EvaluacionesController < ApiController
     @auditoria = Auditoria.find(params[:auditoria_id])
     @evaluacion = @auditoria.evaluaciones.find(params[:id])
     if @evaluacion.update_attributes(evaluacion_params)
+      #ojo falta validar si se puede edtar dependiendo en que fase de la auditoria se esta
       render
     else
       render json: {error: 'No procesado.',

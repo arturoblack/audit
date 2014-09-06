@@ -11,8 +11,10 @@ Rails.application.routes.draw do
       resources :evaluaciones, only:[:update]
       match '/empezar_auditoria', to: 'auditorias#empezar_auditoria', via: 'post'
       match '/evaluar_cumplimiento', to: 'auditorias#evaluar_cumplimiento', via: 'post'
+      match '/finalizar_auditoria', to: 'auditorias#finalizar_auditoria', via: 'post'
       match '/evaluaciones_iniciales', to: 'auditorias#evaluaciones_iniciales', via: 'get'
       match '/evaluaciones_de_cumplimiento', to: 'auditorias#evaluaciones_de_cumplimiento', via: 'get'
+    
     end
 
     scope '/search' do

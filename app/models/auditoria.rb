@@ -30,13 +30,16 @@ class Auditoria < ActiveRecord::Base
     end
 
     event :finalizar do
-      transitions :from => :cumplimiento, :to => :finalizada
+      transitions :from => :cumplimiento, :to => :finalizada, :guard => :finished_cumplimiento?
     end
   end
 
   private
   def finished_evaluacion?
     self.total_evaluaciones == self.iniciales_evaluadas
+  end
+  def finished_cumplimiento?
+    self.total_evaluaciones == self.cumplimiento_evaluadas
   end
   def validate_area_exists
     errors[:area_id] << 'not registered.' unless

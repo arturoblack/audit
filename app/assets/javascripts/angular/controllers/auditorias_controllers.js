@@ -79,6 +79,17 @@ app.controller('areaAuditoriasController',
       $scope.empezando_evaluacion = false;
     });    
   }
+  $scope.cerrarAuditoria = function(auditoria){
+    auditoria.grafica.text = 'Ver gráfica'
+    auditoria.grafica.status = 'off'
+    AuditoriaService.finalizar_auditoria({auditoriaId: auditoria.id}).$promise.then(
+    function(data){
+      auditoria.state = 'finalizada'
+      messagesService.show_message('warning', data.message);
+    },function(data){
+      messagesService.show_message('error', data.data.description);
+    }); 
+  }
   $scope.toggleGrafica = function(auditoria){
     if(auditoria.grafica.status == 'off'){
       auditoria.grafica.text = 'Ocultar gráfica'
@@ -261,8 +272,9 @@ app.controller('graficaIndexController',
             data: [iniciales_incumplidas]
         }]
       }else if(x_auditoria.state == 'finalizada'){
+        console.log('entra')
         categories = ['PRIMERA EVALUACIÓN','EVALUACIÓN DE CUMPLIMIENTO']
-        series: [{
+        series = [{
             name: 'Evidencias cumplidas',
             data: [iniciales_cumplidas, finales_cumplidas]
 
@@ -273,7 +285,6 @@ app.controller('graficaIndexController',
       }
       //$('#index_graph'+auditoria.id).highcharts().destroy();
       var ele = $('#index_graph'+x_auditoria.id)
-      console.log(ele)
       ele.highcharts({
         chart: {
           type: 'column'
