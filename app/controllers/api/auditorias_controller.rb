@@ -29,6 +29,13 @@ class Api::AuditoriasController < ApiController
   def evaluaciones_iniciales
     @auditoria = Auditoria.find(params[:auditoria_id]) 
     @evaluaciones_iniciales = @auditoria.evaluaciones_iniciales.includes(:proceso,:evidence)
+    respond_to do |format|
+      format.json {render}
+      format.pdf do
+        pdf = AuditoriasReportPdf.new()
+        send_data pdf.render, filename: 'Prueba', type: 'application/pdf', disposition:'inline'
+      end   
+    end
   end
 
 

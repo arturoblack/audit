@@ -49,9 +49,15 @@ app.controller('areaAuditoriasController',
     currentAuditoriaService.setAuditoria(auditoria.id,auditoria.codigo);
     $scope.state = 'auditoria.evaluaciones_iniciales'
   }
+  $scope.pdfEvaluacionesIniciales = function(auditoria){
+    window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_iniciales.pdf', '_blank', ''); 
+  }
   $scope.verEvaluacionesCumplimiento = function(auditoria){
     currentAuditoriaService.setAuditoria(auditoria.id,auditoria.codigo);
     $scope.state = 'auditoria.evaluaciones_cumplimiento'
+  }
+  $scope.pdfEvaluacionesCumplimiento = function(auditoria){
+    window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_cumplimiento.pdf', '_blank', ''); 
   }
   $scope.empezarAuditoria = function(auditoria){
     $scope.empezando_evaluacion = true;
