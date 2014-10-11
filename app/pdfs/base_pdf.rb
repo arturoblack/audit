@@ -55,6 +55,7 @@ class BasePdf < Prawn::Document
 
   def sub_header_right(table_data)
     move_cursor_to @last_measured_y  
+    move_down 3*@lineheight_y
     table(table_data, :position => @report_header_x, :width => 215) do
       style(row(0..1).columns(0..1), :padding => [1, 5, 1, 5], :borders => [])
       style(row(2), :background_color => 'e9e9e9', :border_color => 'dddddd', :font_style => :bold)

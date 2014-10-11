@@ -1,13 +1,13 @@
 json.auditoria do
-  json.id @auditoria.id
-  json.codigo @auditoria.codigo
-  json.state @auditoria.aasm_state
-  json.total_evaluaciones @auditoria.total_evaluaciones
-  json.iniciales_evaluadas @auditoria.iniciales_evaluadas
-  json.cumplimiento_evaluadas @auditoria.cumplimiento_evaluadas
+  json.id @ficha_evaluacion.auditoria.id
+  json.codigo @ficha_evaluacion.auditoria.codigo
+  json.state @ficha_evaluacion.auditoria.aasm_state
+  json.total_evaluaciones @ficha_evaluacion.auditoria.total_evaluaciones
+  json.iniciales_evaluadas @ficha_evaluacion.auditoria.iniciales_evaluadas
+  json.cumplimiento_evaluadas @ficha_evaluacion.auditoria.cumplimiento_evaluadas
 end
 json.evaluaciones_de_cumplimiento do
-  json.array!(@evaluaciones_de_cumplimiento) do |ev|
+  json.array!(@ficha_evaluacion.cumplimiento) do |ev|
     json.id ev.id
     json.proceso ev.proceso.nombre
     json.evidence ev.evidence.nombre

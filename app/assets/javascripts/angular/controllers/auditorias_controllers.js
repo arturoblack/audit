@@ -57,7 +57,7 @@ app.controller('areaAuditoriasController',
     $scope.state = 'auditoria.evaluaciones_cumplimiento'
   }
   $scope.pdfEvaluacionesCumplimiento = function(auditoria){
-    window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_cumplimiento.pdf', '_blank', ''); 
+    window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_de_cumplimiento.pdf', '_blank', ''); 
   }
   $scope.empezarAuditoria = function(auditoria){
     $scope.empezando_evaluacion = true;

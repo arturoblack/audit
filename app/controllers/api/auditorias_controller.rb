@@ -27,13 +27,12 @@ class Api::AuditoriasController < ApiController
   end
 
   def evaluaciones_iniciales
-    @auditoria = Auditoria.find(params[:auditoria_id]) 
-    @evaluaciones_iniciales = @auditoria.evaluaciones_iniciales.includes(:proceso,:evidence)
+    @ficha_evaluacion = FichaEvaluacion.new(auditoria)
     respond_to do |format|
       format.json {render}
       format.pdf do
-        pdf = AuditoriasReportPdf.new()
-        send_data pdf.render, filename: 'Prueba', type: 'application/pdf', disposition:'inline'
+        pdf = AuditoriasReportPdf.new(@ficha_evaluacion, 'inicial')
+        send_data pdf.render, filename: 'AU-EV-IN', type: 'application/pdf', disposition:'inline'
       end   
     end
   end
@@ -52,8 +51,14 @@ class Api::AuditoriasController < ApiController
   end
 
   def evaluaciones_de_cumplimiento
-    @auditoria = Auditoria.find(params[:auditoria_id]) 
-    @evaluaciones_de_cumplimiento = @auditoria.evaluaciones_de_cumplimiento.includes(:proceso,:evidence)
+    @ficha_evaluacion = FichaEvaluacion.new(auditoria)
+    respond_to do |format|
+      format.json {render}
+      format.pdf do
+        pdf = AuditoriasReportPdf.new(@ficha_evaluacion, 'cumplimiento')
+        send_data pdf.render, filename: 'AU-EV-CU', type: 'application/pdf', disposition:'inline'
+      end   
+    end
   end
 
   def finalizar_auditoria
@@ -70,5 +75,8 @@ class Api::AuditoriasController < ApiController
   private
   def auditoria_params
     params.require(:auditoria).permit(:codigo,:fecha_programada) 
+  end
+  def auditoria
+    @auditoria ||= Auditoria.find(params[:auditoria_id]) 
   end
 end
