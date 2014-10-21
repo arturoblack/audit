@@ -1,5 +1,7 @@
 class AuditoriasReportPdf < BasePdf
+
   REPORT_NAME = 'Evaluación de evidencias'
+  
   def initialize(ficha, tipo = 'inicial')
     super()
     @ficha = ficha
@@ -11,7 +13,9 @@ class AuditoriasReportPdf < BasePdf
     sub_header_left
     sub_header_right
   end
+  
   private
+  
   def sub_header_left
     super(REPORT_NAME)
     move_down @lineheight_y
@@ -22,6 +26,7 @@ class AuditoriasReportPdf < BasePdf
     text_box "FICHA : #{@tipo.capitalize}", :at => [@address_x, cursor]
     move_down @lineheight_y
   end
+  
   def sub_header_right
     evaluadas = (@tipo == 'inicial' ? @auditoria.iniciales_evaluadas : @auditoria.cumplimiento_evaluadas)
     report_header_data = [
@@ -31,4 +36,5 @@ class AuditoriasReportPdf < BasePdf
     ]
     super(report_header_data)
   end
+
 end

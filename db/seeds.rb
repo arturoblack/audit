@@ -8,7 +8,7 @@
 ['Recursos Humanos', 'Proyección Social', 'Colocación Laboral',
  'Instituto de Investigación', 'Consejería Académica',
 'Grados y Títulos','Instituto de Investigación','Recursos Educacionales',
-'Vinculación Internacional'].each {|area| Area.create(nombre: area)}
+'Vinculación Internacional','Bienestar universitario'].each {|area| Area.create(nombre: area)}
 proyeccion_social = Area.find_by_nombre('Proyección Social')
 {'Planificación y Organización' =>
  ['Plan de trabajo de la unidad a cargo de Proyección social (docentes requeridos)',
