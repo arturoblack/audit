@@ -1,28 +1,16 @@
-== README
+== AUDIT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project for auditing process of an organization.
 
-Things you may want to cover:
+Functionality:
 
-* Ruby version
+* Creation of processes and evidences
 
-* System dependencies
+* Managment of working areas
 
-* Configuration
+* Auditing
 
-* Database creation
+* Graphs
 
-* Database initialization
+* Pdf reports
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
