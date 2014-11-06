@@ -1,6 +1,13 @@
 var app = angular.module('areasApp.Controllers',
   ['ngRoute', 'ui.bootstrap','areaService','procesoService','messagesService','titleService'])
 
+app.controller('indexAreaController',
+  ['$scope', '$routeParams', '$location', 'AreaService', 'titleService',
+  function($scope, $routeParams, $location, AreaService, titleService){
+  $scope.hola = 'chauuuuuuuuuuuuuuuuuuuuuuuuuuuu';  
+}]);
+
+
 app.controller('showAreaController',
   ['$scope', '$routeParams', '$location', 'AreaService', 'currentAreaService','titleService',
   function($scope, $routeParams, $location, AreaService, currentAreaService, titleService){

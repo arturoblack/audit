@@ -1,6 +1,7 @@
 var app = angular.module('myApp',
           ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp',
-          'areasApp','titleService','procesosApp', 'auditoriasApp'])
+          'oestrategicosApp', 'areasApp','titleService','procesosApp', 
+          'auditoriasApp'])
 
 app.run(['$rootScope','titleService','$location',
   function($rootScope,titleService,$location){

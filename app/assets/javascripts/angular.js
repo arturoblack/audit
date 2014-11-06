@@ -18,9 +18,11 @@
 //= require angular/services/auditoria_service.js
 
 //= require angular/controllers/sidebar_controllers.js
+//= require angular/controllers/oestrategicos_controllers.js
 //= require angular/controllers/areas_controllers.js
 //= require angular/controllers/auditorias_controllers.js
 
+//= require angular/oestrategicos.js
 //= require angular/procesos.js
 //= require angular/areas.js
 //= require angular/auditorias.js

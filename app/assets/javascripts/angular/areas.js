@@ -4,7 +4,10 @@ var app = angular.module('areasApp',
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider){
     $routeProvider
-      .when('/areas/:areaId', {
+      .when('/areas',{
+        templateUrl: 'areas/index.html',
+        controller: 'indexAreaController'
+      }).when('/areas/:areaId', {
         templateUrl: "areas/show.html",
         controller: 'showAreaController'
       }).when('/areas/:areaId/procesos', {
