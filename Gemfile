@@ -16,10 +16,21 @@ gem 'bower-rails'
 gem 'angular-rails-templates', '~>0.1'
 gem 'validates_timeliness', '~> 3.0'
 gem 'activerecord-import'
+
 group :production, :staging do
   gem "rails_12factor"
   gem "rails_stdout_logging"
   gem "rails_serve_static_assets"
 end
-gem 'byebug', group: [:development, :test]
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.1'
+  gem 'byebug'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', require: false
+end
 
