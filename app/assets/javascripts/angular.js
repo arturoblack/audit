@@ -13,6 +13,7 @@
 
 //= require angular/services/title_service.js
 //= require angular/services/messages_service.js
+//= require angular/services/oestrategico_service.js
 //= require angular/services/area_service.js
 //= require angular/services/proceso_service.js
 //= require angular/services/auditoria_service.js

@@ -6,7 +6,10 @@ app.config(['$routeProvider', '$locationProvider',
     $routeProvider
     .when('/oestrategicos', {
         templateUrl: "oestrategicos/index.html",
-        controller: 'indexOestrategicosController'
+        controller: "indexOestrategicosController"
+    }).when('/oestrategicos/new', {
+      templateUrl: "oestrategicos/new.html",
+      controller: "createOestrategicosController"
     })
     $locationProvider.html5Mode(true);  
 }]);

@@ -14,9 +14,9 @@ app.controller('showAreaController',
   $scope.loading_area = true;  
   AreaService.get({areaId: $routeParams.areaId}).$promise.then(
     function(data) {
-      titleService.setTitle(data.area.nombre)
+      titleService.setTitle(data.area.nombre);
       $scope.area = data.area;
-      currentAreaService.setArea(data.area.id,data.area.nombre)
+      currentAreaService.setArea(data.area.id,data.area.nombre);
       $scope.loading_area = false; 
   });
 }]);

@@ -1,0 +1,71 @@
+<aside class="right-side">
+  <section class="col-lg-12">
+    <div class='row'>
+      <div class="nav-tabs-custom">
+        <!-- Tabs within a box -->
+        <ul class="nav nav-tabs pull-right">
+          <li><a href="/">Dashboard</a></li>
+          <li class='active'>
+            <a href="/oestrategicos">
+              Objetivos Estratégicos
+            </a>
+          </li>
+          <li><a href="/areas">Areas</a></li>
+          <li class="pull-left header"><i class="fa fa-inbox"></i>Home</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="content invoice">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          <i class="fa fa-bell-o"></i> Objetivos Estratégicos
+          <small class="pull-right" style='margin-top: 0px'>
+            <a href='/oestrategicos'>
+              Listar OE
+            </a>
+          </small>
+        </h2>
+      </div><!-- /.col -->
+    </div>
+    <div class='row'>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nuevo objetivo estratégico</h3>
+        </div>
+        <div class="panel-body">
+          <form ng-submit="crearOE()">
+            <div class="form-group" ng-class="{'has-error': errors.codigo}">
+              <label>Código</label>
+              <input ng-model='nuevo_oe.codigo' class="form-control" 
+              placeholder="Código del objetivo estrategico" type="text">
+              <p ng-show='errors.codigo' class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> {{errors.codigo.join()}}
+              </p> 
+            </div>
+            <div class="form-group" ng-class="{'has-error': errors.nombre}">
+              <label>Nombre</label>
+              <input ng-model='nuevo_oe.nombre' class="form-control">
+              <p ng-show='errors.nombre' class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> {{errors.nombre.join()}}
+              </p> 
+            </div>
+            <div class="form-group" ng-class="{'has-error': errors.descripcion}">
+              <label>Descripcion</label>
+              <textarea ng-model='nuevo_oe.descripcion' rows='4' class="form-control"></textarea>
+              <p ng-show='errors.descripcion' class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> {{errors.descripcion.join()}}
+              </p> 
+            </div>
+
+            <center>
+              <button ng-disabled="loading" class="btn btn-info btn-flat" type="submit">Guardar
+              </button>
+            </center>  
+          </form>
+        </div><!-- panel-body -->
+      </div><!-- panel -->
+    </div>
+  </section>
+</aside><!-- /.right-side -->
