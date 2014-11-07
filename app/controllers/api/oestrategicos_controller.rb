@@ -1,6 +1,6 @@
 class Api::OestrategicosController < ApiController
   def index
-    @oestrategicos = Oestrategico.all
+    @oestrategicos = Oestrategico.all.order(:created_at)
   end
   
   def create

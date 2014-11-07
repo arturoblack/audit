@@ -1,1 +1,1 @@
-json.array! @oestrategicos, :id, :nombre, :descripcion
+json.array! @oestrategicos, :id, :codigo, :nombre, :descripcion
