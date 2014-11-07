@@ -29,7 +29,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 2.4.4'
+  gem 'factory_girl_rails'
+  gem 'api_matchers'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end
