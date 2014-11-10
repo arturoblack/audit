@@ -1,11 +1,11 @@
 var app = angular.module('auditoriasApp.Controllers',
   ['ngRoute', 'ui.bootstrap','areaService','messagesService','titleService',
-  'auditoriaService'])
+  'auditoriaService']);
 
 app.controller('newAuditoriaController',
   ['$scope', '$routeParams', '$route', 'AreaService','messagesService',
    function($scope, $routeParams, $route, AreaService, messagesService){
-    $scope.nueva_auditoria = {codigo: ''}
+    $scope.nueva_auditoria = {codigo: ''};
     $scope.loading = false;
     $scope.crearAuditoria = function(){
       $scope.loading = true;
@@ -19,7 +19,7 @@ app.controller('newAuditoriaController',
         $scope.loading = false;
         $scope.errors = error.data.data.errors;
       });
-    }
+    };
 }]);
 
 app.controller('areaAuditoriasController',
@@ -27,86 +27,97 @@ app.controller('areaAuditoriasController',
   'titleService','AuditoriaService','currentAuditoriaService',
   function($scope,$route, $routeParams, AreaService, currentAreaService,messagesService,
     titleService,AuditoriaService,currentAuditoriaService){
-  $scope.state = 'auditorias'  
+  $scope.state = 'auditorias';  
   $scope.loading_area = true;  
-  $scope.prueba = moment('2012-12-12').format('DD/MM/YYYY')
+  $scope.prueba = moment('2012-12-12').format('DD/MM/YYYY');
   AreaService.auditorias({ areaId: $routeParams.areaId}).$promise.then(
     function(data) {
       $scope.area = data.area;
-      titleService.setTitle($scope.area.nombre + ' > Auditorias')
+      titleService.setTitle($scope.area.nombre + ' > Auditorias');
       currentAreaService.setArea(data.area.id,data.area.nombre);
       $scope.auditorias = data.auditorias;
       $scope.loading_area = false; 
   });
+
   $scope.nuevaAuditoria = function(){
-    titleService.setTitle($scope.area.nombre + ' > Nueva auditoria')
-    $scope.state = 'auditorias.new' 
-  }
+    titleService.setTitle($scope.area.nombre + ' > Nueva auditoria');
+    $scope.state = 'auditorias.new'; 
+  };
+
   $scope.listarAuditorias = function(){
     $route.reload(); 
-  }
+  };
+
   $scope.verEvaluacionesIniciales = function(auditoria){
     currentAuditoriaService.setAuditoria(auditoria.id,auditoria.codigo);
-    $scope.state = 'auditoria.evaluaciones_iniciales'
-  }
+    $scope.state = 'auditoria.evaluaciones_iniciales';
+  };
+
   $scope.pdfEvaluacionesIniciales = function(auditoria){
     window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_iniciales.pdf', '_blank', ''); 
-  }
+  };
+
   $scope.verEvaluacionesCumplimiento = function(auditoria){
     currentAuditoriaService.setAuditoria(auditoria.id,auditoria.codigo);
-    $scope.state = 'auditoria.evaluaciones_cumplimiento'
-  }
+    $scope.state = 'auditoria.evaluaciones_cumplimiento';
+  };
+
   $scope.pdfEvaluacionesCumplimiento = function(auditoria){
     window.open('/api/auditorias/'+ auditoria.id + '/evaluaciones_de_cumplimiento.pdf', '_blank', ''); 
-  }
+  };
+
   $scope.empezarAuditoria = function(auditoria){
     $scope.empezando_evaluacion = true;
     AuditoriaService.empezar_auditoria({auditoriaId: auditoria.id}).$promise.then(
     function(data){
       $scope.empezando_evaluacion = false;
       currentAuditoriaService.setAuditoria(auditoria.id, auditoria.codigo);
-      $scope.state = 'auditoria.evaluaciones_iniciales'
+      $scope.state = 'auditoria.evaluaciones_iniciales';
       messagesService.show_message('warning', data.message);
     },function(data){
       messagesService.show_message('error', data.data.description);
       $scope.empezando_evaluacion = false;
     });    
-  }
+  };
+
   $scope.verificarCumplimiento = function(auditoria){
     $scope.empezando_evaluacion = true;
     AuditoriaService.verificar_cumplimiento({auditoriaId: auditoria.id}).$promise.then(
     function(data){
       $scope.empezando_evaluacion = false;
       currentAuditoriaService.setAuditoria(auditoria.id, auditoria.codigo);
-      $scope.state = 'auditoria.evaluaciones_cumplimiento'
+      $scope.state = 'auditoria.evaluaciones_cumplimiento';
       messagesService.show_message('warning', data.message);
     },function(data){
       messagesService.show_message('error', data.data.description);
       $scope.empezando_evaluacion = false;
     });    
-  }
+  };
+
   $scope.cerrarAuditoria = function(auditoria){
-    auditoria.grafica.text = 'Ver gráfica'
-    auditoria.grafica.status = 'off'
+    auditoria.grafica.text = 'Ver gráfica';
+    auditoria.grafica.status = 'off';
     AuditoriaService.finalizar_auditoria({auditoriaId: auditoria.id}).$promise.then(
     function(data){
-      auditoria.state = 'finalizada'
+      auditoria.state = 'finalizada';
       messagesService.show_message('warning', data.message);
     },function(data){
       messagesService.show_message('error', data.data.description);
     }); 
-  }
+  };
+
   $scope.toggleGrafica = function(auditoria){
-    if(auditoria.grafica.status == 'off'){
-      auditoria.grafica.text = 'Ocultar gráfica'
-      auditoria.grafica.status = 'on'
+    if(auditoria.grafica.status === 'off'){
+      auditoria.grafica.text = 'Ocultar gráfica';
+      auditoria.grafica.status = 'on';
       currentAuditoriaService.setAuditoria(auditoria.id, auditoria.codigo);
     }else{
-      auditoria.grafica.text = 'Ver gráfica'
-      auditoria.grafica.status = 'off'
+      auditoria.grafica.text = 'Ver gráfica';
+      auditoria.grafica.status = 'off';
       currentAuditoriaService.resetAuditoria();
     }    
-  }
+  };
+
   $scope.$on('switchView', function(event, new_state) {
     $scope.state = new_state;
   });   
@@ -117,29 +128,31 @@ app.controller('evaluacionesInicialesController',
   ['$scope', '$modal', 'AuditoriaService', 'currentAuditoriaService',
   function($scope, $modal, AuditoriaService, currentAuditoriaService){
   $scope.loading_auditoria = true;
-  $scope.auditoria = {id: currentAuditoriaService.id}
-  $scope.grafica = {status:'off', text:'Ver gráfica'}
+  $scope.auditoria = {id: currentAuditoriaService.id};
+  $scope.grafica = {status:'off', text:'Ver gráfica'};
   AuditoriaService.evaluaciones_iniciales({auditoriaId: $scope.auditoria.id}).$promise.then(
     function(data){
-      $scope.auditoria = data.auditoria
+      $scope.auditoria = data.auditoria;
       $scope.evaluaciones_iniciales = _.groupBy(data.evaluaciones_iniciales,
                                          function(ev){ return ev.proceso; });
-      $scope.procesos = Object.keys($scope.evaluaciones_iniciales)
+      $scope.procesos = Object.keys($scope.evaluaciones_iniciales);
       $scope.loading_auditoria = false;
   });
+
   $scope.toggleGrafica = function(){
-    if($scope.grafica.status == 'off'){
-      $scope.grafica.status = 'on'
-      $scope.grafica.text = 'Ocultar gráfica'
+    if($scope.grafica.status === 'off'){
+      $scope.grafica.status = 'on';
+      $scope.grafica.text = 'Ocultar gráfica';
     }
     else{
-      $scope.grafica.status = 'off'
-      $scope.grafica.text = 'Ver gráfica'
+      $scope.grafica.status = 'off';
+      $scope.grafica.text = 'Ver gráfica';
     }
-  }
+  };
+
   $scope.evaluar = function(evaluacion){
-    $scope.grafica.status = 'off'
-    $scope.grafica.text = 'Ver gráfica'
+    $scope.grafica.status = 'off';
+    $scope.grafica.text = 'Ver gráfica';
     var modalInstance = $modal.open({
       templateUrl: 'auditorias/auditoria.evaluacion_inicial.edit.html',
       controller: 'editEvaluacionInicialController',
@@ -153,12 +166,12 @@ app.controller('evaluacionesInicialesController',
       if(!evaluacion.evaluada){
         $scope.auditoria.iniciales_evaluadas ++;
       }
-      evaluacion.cumplimiento = updated_evaluacion.cumplimiento
-      evaluacion.fecha_evaluacion = updated_evaluacion.fecha_evaluacion
-      evaluacion.fecha_cumplimiento = updated_evaluacion.fecha_cumplimiento
-      evaluacion.observacion = updated_evaluacion.observacion
-      evaluacion.plan_accion = updated_evaluacion.plan_accion
-      evaluacion.evaluada = updated_evaluacion.evaluada
+      evaluacion.cumplimiento = updated_evaluacion.cumplimiento;
+      evaluacion.fecha_evaluacion = updated_evaluacion.fecha_evaluacion;
+      evaluacion.fecha_cumplimiento = updated_evaluacion.fecha_cumplimiento;
+      evaluacion.observacion = updated_evaluacion.observacion;
+      evaluacion.plan_accion = updated_evaluacion.plan_accion;
+      evaluacion.evaluada = updated_evaluacion.evaluada;
     });
   }
   $scope.verEvaluacionesCumplimiento = function(auditoria){
@@ -171,11 +184,11 @@ app.controller('evaluacionesCumplimientoController',
   ['$scope', '$modal', 'AuditoriaService', 'currentAuditoriaService',
   function($scope, $modal, AuditoriaService, currentAuditoriaService){
   $scope.loading_auditoria = true;
-  $scope.auditoria = {id: currentAuditoriaService.id}
-  $scope.grafica = {status:'off', text:'Ver gráfica'}
+  $scope.auditoria = {id: currentAuditoriaService.id};
+  $scope.grafica = {status:'off', text:'Ver gráfica'};
   AuditoriaService.evaluaciones_de_cumplimiento({auditoriaId: $scope.auditoria.id}).$promise.then(
     function(data){
-      $scope.auditoria = data.auditoria
+      $scope.auditoria = data.auditoria;
       $scope.evaluaciones_de_cumplimiento = _.groupBy(data.evaluaciones_de_cumplimiento,
                                          function(ev){ return ev.proceso; });
       $scope.procesos = Object.keys($scope.evaluaciones_de_cumplimiento)
@@ -183,21 +196,22 @@ app.controller('evaluacionesCumplimientoController',
   });
   $scope.toggleGrafica = function(){
     if($scope.grafica.status == 'off'){
-      $scope.grafica.status = 'on'
-      $scope.grafica.text = 'Ocultar gráfica'
+      $scope.grafica.status = 'on';
+      $scope.grafica.text = 'Ocultar gráfica';
     }
     else{
-      $scope.grafica.status = 'off'
-      $scope.grafica.text = 'Ver gráfica'
+      $scope.grafica.status = 'off';
+      $scope.grafica.text = 'Ver gráfica';
     }
-  }
+  };
+
   $scope.verEvaluacionesIniciales = function(auditoria){
     currentAuditoriaService.setAuditoria(auditoria.id,auditoria.codigo);
     $scope.$emit('switchView', 'auditoria.evaluaciones_iniciales');
   }
   $scope.evaluar = function(evaluacion){
-    $scope.grafica.status = 'off'
-    $scope.grafica.text = 'Ver gráfica'
+    $scope.grafica.status = 'off';
+    $scope.grafica.text = 'Ver gráfica';
     var modalInstance = $modal.open({
       templateUrl: 'auditorias/auditoria.evaluacion_inicial.edit.html',
       controller: 'editEvaluacionInicialController',
@@ -211,12 +225,12 @@ app.controller('evaluacionesCumplimientoController',
       if(!evaluacion.evaluada){
         $scope.auditoria.cumplimiento_evaluadas ++;
       }
-      evaluacion.cumplimiento = updated_evaluacion.cumplimiento
-      evaluacion.fecha_evaluacion = updated_evaluacion.fecha_evaluacion
-      evaluacion.fecha_cumplimiento = updated_evaluacion.fecha_cumplimiento
-      evaluacion.observacion = updated_evaluacion.observacion
-      evaluacion.plan_accion = updated_evaluacion.plan_accion
-      evaluacion.evaluada = updated_evaluacion.evaluada
+      evaluacion.cumplimiento = updated_evaluacion.cumplimiento;
+      evaluacion.fecha_evaluacion = updated_evaluacion.fecha_evaluacion;
+      evaluacion.fecha_cumplimiento = updated_evaluacion.fecha_cumplimiento;
+      evaluacion.observacion = updated_evaluacion.observacion;
+      evaluacion.plan_accion = updated_evaluacion.plan_accion;
+      evaluacion.evaluada = updated_evaluacion.evaluada;
     });
   }
 }]);
@@ -228,7 +242,7 @@ app.controller('editEvaluacionInicialController',
     currentAuditoriaService, AuditoriaService) {
     //Hace una copia del objeto evaluacion, para que no afecte cambios
   $scope.evaluacion = angular.copy(evaluacion);
-  $scope.auditoria = currentAuditoriaService
+  $scope.auditoria = currentAuditoriaService;
   $scope.loading = false;
   $scope.open = function($event) {
     $event.preventDefault();
@@ -263,23 +277,21 @@ app.controller('graficaIndexController',
   AuditoriaService.get({auditoriaId: $scope.auditory.id}).$promise.then(
     function(data){
       var x_auditoria = data.auditoria;
-      var iniciales_cumplidas = x_auditoria.iniciales_cumplidas
-      var iniciales_incumplidas = x_auditoria.total_evaluaciones-iniciales_cumplidas
-      var finales_cumplidas = x_auditoria.finales_cumplidas
-      var finales_incumplidas = x_auditoria.total_evaluaciones-finales_cumplidas
+      var iniciales_cumplidas = x_auditoria.iniciales_cumplidas;
+      var iniciales_incumplidas = x_auditoria.total_evaluaciones-iniciales_cumplidas;
+      var finales_cumplidas = x_auditoria.finales_cumplidas;
+      var finales_incumplidas = x_auditoria.total_evaluaciones-finales_cumplidas;
       if(x_auditoria.state == 'cumplimiento'){
-        categories = ['PRIMERA EVALUACIÓN']
+        categories = ['PRIMERA EVALUACIÓN'];
         series = [{
             name: 'Evidencias cumplidas',
             data: [iniciales_cumplidas]
-
         }, {
             name: 'Evidencias incumplidas',
             data: [iniciales_incumplidas]
         }]
       }else if(x_auditoria.state == 'finalizada'){
-        console.log('entra')
-        categories = ['PRIMERA EVALUACIÓN','EVALUACIÓN DE CUMPLIMIENTO']
+        categories = ['PRIMERA EVALUACIÓN','EVALUACIÓN DE CUMPLIMIENTO'];
         series = [{
             name: 'Evidencias cumplidas',
             data: [iniciales_cumplidas, finales_cumplidas]
