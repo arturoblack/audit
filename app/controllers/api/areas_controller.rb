@@ -1,5 +1,10 @@
 class Api::AreasController < ApiController
 
+  def index
+    @areas = Area.all.order(:created_at).
+      includes(:procesos, :auditorias, :oestrategicos)
+  end
+
   def search_areas
     @areas = Area.where('nombre ilike ?', "%#{params[:query]}%")
   end

@@ -25,5 +25,50 @@
         </h2>
       </div><!-- /.col -->
     </div>
+    <div class='row'>
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Listado de areas</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tbody>
+              <tr>
+                <th><i class="fa fa-sitemap"></i> Nombre</th>
+                <th><i class="fa fa-bell-o"></i> Colabora con</th>
+                <th><i class="fa fa-cogs"></i> Procesos</th>
+                <th><i class="fa fa-pencil"></i> Auditorías</th>
+                <th></th>
+              </tr>
+              <tr ng-repeat="area in areas">
+                <td style='color: #3c763d'>
+                  <b>{{area.nombre}}</b>
+                </td>
+                <td>
+                  <a href="">{{area.oestrategicos}}</a> objetivos estratégicos.
+                </td>
+                <td>
+                  Tiene 
+                  <a href="/areas/{{area.id}}/procesos">{{area.procesos}}</a> 
+                  procesos registrados.
+                </td>
+                <td>
+                  Se realizaron 
+                  <a href="/areas/{{area.id}}/auditorias">{{area.auditorias}}</a> 
+                  auditorias.
+                </td>
+                <td>
+                  <a href="/areas/{{area.id}}" class='btn btn-sm btn-primary'>
+                    <i class='fa fa-share'></i> Visitar area
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div> 
+    </div>
   </section>
 </aside><!-- /.right-side -->

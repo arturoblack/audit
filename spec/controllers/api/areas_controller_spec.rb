@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 describe Api::AreasController, type: :controller do
+  render_views
+
+  describe "#index" do
+    it "responds with the correct status code" do
+      get :index, format: :json
+      
+      expect(response.status).to eq(200)
+    end
+
+    it "returns all created areas" do
+      create_list(:area, 2)
+
+      get :index, format: :json
+
+      expect(json.count).to eq(2)
+    end
+  end
+
   describe "#create" do
     context "registration of area success" do
       

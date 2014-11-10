@@ -5,7 +5,7 @@ var app = angular.module('areasApp.Controllers',
 app.controller('indexAreaController',
   ['$scope', '$routeParams', '$location', 'AreaService', 'titleService',
   function($scope, $routeParams, $location, AreaService, titleService){
-  $scope.hola = 'chauuuuuuuuuuuuuuuuuuuuuuuuuuuu';  
+    $scope.areas = AreaService.query();
 }]);
 
 app.controller('newAreaController',
