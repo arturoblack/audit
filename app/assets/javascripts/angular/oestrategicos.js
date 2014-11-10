@@ -10,6 +10,6 @@ app.config(['$routeProvider', '$locationProvider',
     }).when('/oestrategicos/new', {
       templateUrl: "oestrategicos/new.html",
       controller: "createOestrategicosController"
-    })
+    });
     $locationProvider.html5Mode(true);  
 }]);

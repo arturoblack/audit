@@ -7,6 +7,9 @@ app.config(['$routeProvider', '$locationProvider',
       .when('/areas',{
         templateUrl: 'areas/index.html',
         controller: 'indexAreaController'
+      }).when('/areas/new', {
+        templateUrl: "areas/new.html",
+        controller: 'newAreaController'
       }).when('/areas/:areaId', {
         templateUrl: "areas/show.html",
         controller: 'showAreaController'
