@@ -13,14 +13,17 @@
 
 //= require angular/services/title_service.js
 //= require angular/services/messages_service.js
+//= require angular/services/oestrategico_service.js
 //= require angular/services/area_service.js
 //= require angular/services/proceso_service.js
 //= require angular/services/auditoria_service.js
 
 //= require angular/controllers/sidebar_controllers.js
+//= require angular/controllers/oestrategicos_controllers.js
 //= require angular/controllers/areas_controllers.js
 //= require angular/controllers/auditorias_controllers.js
 
+//= require angular/oestrategicos.js
 //= require angular/procesos.js
 //= require angular/areas.js
 //= require angular/auditorias.js

@@ -1,15 +1,22 @@
 var app = angular.module('areasApp.Controllers',
   ['ngRoute', 'ui.bootstrap','areaService','procesoService','messagesService','titleService'])
 
+app.controller('indexAreaController',
+  ['$scope', '$routeParams', '$location', 'AreaService', 'titleService',
+  function($scope, $routeParams, $location, AreaService, titleService){
+  $scope.hola = 'chauuuuuuuuuuuuuuuuuuuuuuuuuuuu';  
+}]);
+
+
 app.controller('showAreaController',
   ['$scope', '$routeParams', '$location', 'AreaService', 'currentAreaService','titleService',
   function($scope, $routeParams, $location, AreaService, currentAreaService, titleService){
   $scope.loading_area = true;  
   AreaService.get({areaId: $routeParams.areaId}).$promise.then(
     function(data) {
-      titleService.setTitle(data.area.nombre)
+      titleService.setTitle(data.area.nombre);
       $scope.area = data.area;
-      currentAreaService.setArea(data.area.id,data.area.nombre)
+      currentAreaService.setArea(data.area.id,data.area.nombre);
       $scope.loading_area = false; 
   });
 }]);
