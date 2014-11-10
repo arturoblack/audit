@@ -9,7 +9,7 @@ class Api::AreasController < ApiController
     if area.save
       render json: {
                     message: t("areas.flashes.created"),
-                    area: { area_id: area.id }
+                    area: { id: area.id }
                    },
              status: :created
     else

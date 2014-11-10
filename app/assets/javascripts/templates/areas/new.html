@@ -1,0 +1,64 @@
+<aside class="right-side">
+  <section class="col-lg-12">
+    <div class='row'>
+      <div class="nav-tabs-custom">
+        <!-- Tabs within a box -->
+        <ul class="nav nav-tabs pull-right">
+          <li><a href="/">Dashboard</a></li>
+          <li><a href="/oestrategicos">Objetivos Estratégicos</a></li>
+          <li class='active'><a href="/areas">Areas</a></li>
+          <li class="pull-left header"><i class="fa fa-inbox"></i>Home</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="content invoice">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          <i class="fa fa-sitemap"></i> Areas
+          <small class="pull-right" style='margin-top: 0px'>
+            <a ng-href='/areas' >
+              Listar areas
+            </a>
+          </small>
+        </h2>
+      </div><!-- /.col -->
+    </div>
+    <div class='row'>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nueva area</h3>
+        </div>
+        <div class="panel-body">
+          <form ng-submit="createArea()">
+            <div class="form-group" ng-class="{'has-error': errors.nombre}">
+              <label>Nombre</label>
+              <input ng-model='area.nombre' class="form-control" placeholder='Ingrese nombre del area'>
+              <p ng-show='errors.nombre' class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> {{errors.nombre.join()}}
+              </p> 
+            </div>
+              <div class="panel panel-warning">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Esta area colabora con los siguientes objetivos estratégicos</h3>
+                </div>
+                <div class="panel-body">
+                  <div class='form-group' ng-repeat="oe in oestrategicos">
+                    <label>
+                      <input type="checkbox" checklist-model="area.oestrategicos" 
+                      checklist-value="oe.id"> {{oe.nombre}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            <center>
+              <button ng-disabled="loading" class="btn btn-info btn-flat" type="submit">Guardar
+              </button>
+            </center>  
+          </form>
+        </div><!-- panel-body -->
+      </div><!-- panel -->
+    </div>
+  </section>
+</aside><!-- /.right-side -->

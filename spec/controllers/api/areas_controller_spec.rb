@@ -27,7 +27,7 @@ describe Api::AreasController, type: :controller do
         post :create, format: :json, area: {nombre: 'Area1'}
         
         expect(response.body).to have_json_node(:area)
-        expect(response.body).to have_json_node(:area_id)
+        expect(response.body).to have_json_node(:id)
       end
  
       context "when supplied objectivos estrategicos" do

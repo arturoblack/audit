@@ -1,20 +1,21 @@
 var app = angular.module('myApp',
           ['ngRoute', 'ngAnimate','angular-loading-bar','sidebarApp',
           'oestrategicosApp', 'areasApp','titleService','procesosApp', 
-          'auditoriasApp'])
+          'auditoriasApp']);
 
-app.run(['$rootScope','titleService','$location',
-  function($rootScope,titleService,$location){
-  $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
+app.run(['$rootScope','titleService',
+  function($rootScope,titleService){
+  $rootScope.$on("$routeChangeSuccess", function(event, currentRoute){
     if(currentRoute.$$route.title){
-      titleService.setTitle(currentRoute.$$route.title)
+      titleService.setTitle(currentRoute.$$route.title);
     }
   });
-}])
+}]);
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
-}])
+}]);
+
 app.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider){
     $routeProvider
@@ -27,6 +28,7 @@ app.config(['$routeProvider', '$locationProvider',
       });
     $locationProvider.html5Mode(true);  
 }]);
+
 app.config(['$httpProvider',function($httpProvider) {
   $httpProvider.interceptors.push('httpRequestInterceptor');
   $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
