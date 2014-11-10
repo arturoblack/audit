@@ -1,19 +1,35 @@
 class Api::AreasController < ApiController
-  before_action :check_query_string, only: [:search_areas]
+
   def search_areas
     @areas = Area.where('nombre ilike ?', "%#{params[:query]}%")
   end
+ 
+  def create
+    area = Area.new(area_params)
+    if area.save
+      render json: {
+                    message: t("areas.flashes.created"),
+                    area: { area_id: area.id }
+                   },
+             status: :created
+    else
+      render json: {
+                    message: t("areas.flashes.error"),
+                    errors: area.errors.messages
+                   },
+             status: :unprocessable_entity
+    end
+  end
+  
   def show
-    sleep 0.5
     area = Area.find(params[:id])
     render json: {area: { id: area.id, nombre: area.nombre}}
   end
+ 
   private
-  def check_query_string
-    unless params[:query] and params[:query].length >=3 and params[:query].length <= 250
-      render json: {error: 'Bad query length',
-                    description: "La consulta debe tener 3 caracteres como minimo y maximo 250."},
-                    status: 400
-    end
+  def area_params
+    oestrategicos = Oestrategico.where(id: params[:area][:oestrategicos])
+    {nombre: params[:area][:nombre], oestrategicos: oestrategicos}
   end
+
 end
