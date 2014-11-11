@@ -5,6 +5,12 @@
         <i class="fa fa-angle-double-down" style='color: #29d'></i>
       </center>
       <ul class="sidebar-menu">
+        <li ng-class="{active: active_link == 0}">
+          <a ng-href="/areas/{{area.id}}">
+            <i class="fa fa-dashboard"></i> <span>BSC | Dashboard</span>
+            <small class="badge pull-right bg-red">3</small>
+          </a>
+        </li>
         <li ng-class="{active: active_link == 1}">
           <a ng-href="/areas/{{area.id}}/procesos">
             <i class="fa fa-cogs"></i><span>Procesos y Evidencias</span>
@@ -15,12 +21,12 @@
             <i class="fa fa-pencil-square-o"></i> <span>Auditorias</span>            
           </a>
         </li> 
-        <li>
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>BSC</span>
-            <small class="badge pull-right bg-red">3</small>
+        <li ng-class="{active: active_link == 3}">
+          <a ng-href="/areas/{{area.id}}/indicadores">
+            <i class="fa fa-bullhorn"></i> <span>Adm. Indicadores</span>            
           </a>
-        </li>
+        </li> 
+        
         <li>
           <a href="#">
             <i class="fa fa-th"></i> <span>Objetivos</span> <small class="badge pull-right bg-green">new</small>

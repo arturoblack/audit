@@ -4,6 +4,7 @@ var app = angular.module('sidebarApp.Controllers',
 app.controller('sidebarController',
   ['$scope', function($scope){
 }]);
+
 app.controller('sidebarSearchController',
   ['$scope', '$location', 'currentAreaService',
   function($scope,$location,currentAreaService){

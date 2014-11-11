@@ -22,11 +22,13 @@
 //= require angular/controllers/sidebar_controllers.js
 //= require angular/controllers/oestrategicos_controllers.js
 //= require angular/controllers/areas_controllers.js
+//= require angular/controllers/indicadores_controller.js
 //= require angular/controllers/auditorias_controllers.js
 
 //= require angular/oestrategicos.js
 //= require angular/procesos.js
 //= require angular/areas.js
+//= require angular/indicadores.js
 //= require angular/auditorias.js
 //= require angular/sidebar.js
 //= require angular/app.js
