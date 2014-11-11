@@ -1,0 +1,2 @@
+class IndicadorGestion < Indicador
+end

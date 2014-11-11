@@ -1,6 +1,7 @@
 class Area < ActiveRecord::Base
   has_many :procesos
   has_many :auditorias
+  has_many :indicadores
   has_many :evidences, through: :procesos
   has_and_belongs_to_many :oestrategicos
 
