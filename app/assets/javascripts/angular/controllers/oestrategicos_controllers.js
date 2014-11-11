@@ -1,6 +1,6 @@
 var app = angular.module('oestrategicosApp.Controllers',
   ['ngRoute', 'ui.bootstrap', 'oestrategicoService', 'messagesService', 
-  'titleService'])
+  'titleService']);
 
 app.controller('indexOestrategicosController',
   ['$scope', '$routeParams', '$location', 'OestrategicoService', 'titleService',

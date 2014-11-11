@@ -3,3 +3,7 @@ en:
     flashes:
       error: 'No procesado.'
       created: 'Se creó correntamente el objetivo estratégico.'  
+  areas:
+    flashes:
+      error: 'No procesado.'
+      created: 'Se creó correntamente esta area.'  

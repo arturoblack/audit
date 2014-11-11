@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require js/bootstrap.js
+//= require js/bootstrap.min.js
 //= require js/app.js
 //= require jquery.autocomplete.js
 //= require jquery.toastr.js
