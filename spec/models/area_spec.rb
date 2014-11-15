@@ -8,5 +8,6 @@ describe Area do
   it { is_expected.to have_many(:procesos) }
   it { is_expected.to have_many(:auditorias) }
   it { is_expected.to have_many(:evidences) }
+  it { is_expected.to have_many(:indicadores) }
   it { is_expected.to have_and_belong_to_many(:oestrategicos) }
 end

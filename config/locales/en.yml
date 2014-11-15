@@ -7,3 +7,12 @@ en:
     flashes:
       error: 'No procesado.'
       created: 'Se creó correntamente esta area.'  
+  indicadores:
+    flashes:
+      error: 'No procesado.'
+  indicadores_gestion:
+    flashes:
+      created: 'Se creó correctamente el indicador de gestión.'    
+  indicadores_operativos:
+    flashes:
+      created: 'Se creó correctamente el indicador operativo.'    

@@ -12,6 +12,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'auditoria', 'auditorias'
   inflect.irregular 'evaluacion', 'evaluaciones'
+  inflect.irregular 'indicador', 'indicadores'
 end
 # These inflection rules are supported but not enabled by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
