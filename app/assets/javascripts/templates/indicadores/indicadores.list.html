@@ -1,1 +1,34 @@
-<h1>In the list template</h1>
+<div class="col-md-12">
+	<h3> {{ area.nombre  }}</h3>
+	<button class="btn">Indicadores CONEAU</button>
+	<button class="btn">Indicadores Internos</button>
+	<hr>
+</div>
+<div class="col-md-12">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Nombre</th>
+				<th>Tipo 1</th>
+				<th>Tipo 2</th>
+				<th>Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="indicador in indicadores">
+				<td> <strong> {{ indicador.id }} </strong> </td>
+				<td> {{ indicador.nombre }} </td>
+				<td ng-if="indicador.tipo == 1 "> <span class="badge bg-yellow">Gestión</span> </td>
+	  			<td ng-if="indicador.tipo == 2 "> <span class="badge bg-red">Operativo</span> </td>
+				<td ng-if="indicador.tipo2 == 1 "> <span class="badge bg-yellow">Interno</span> </td>
+				<td ng-if="indicador.tipo2 == 2 "> <span class="badge bg-red">CONEAU</span> </td>
+				<td>
+					<a href="#"> <i class="fa fa-fw fa-pencil"></i> Editar</a>  
+					| 
+					<a href="#"> <i class="fa fa-fw fa-trash-o"></i> Eliminar</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
