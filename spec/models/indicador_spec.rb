@@ -9,6 +9,7 @@ describe Indicador do
 
   it { is_expected.to ensure_length_of(:codigo).is_at_most(250) }
   it { is_expected.to ensure_length_of(:nombre).is_at_most(250) }
+  it { is_expected.to ensure_length_of(:descripcion).is_at_most(1000) }
 
   it { is_expected.to validate_uniqueness_of(:codigo).
        scoped_to(:area_id).case_insensitive }
