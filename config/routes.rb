@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :areas, only: [:show, :create, :index] do
       resources :procesos, only: [:index, :create]
       resources :auditorias, only: [:index, :create]
+      resources :indicadores, only: [:index]
+      resources :indicadores_gestion, only: [:index, :create]
+      resources :indicadores_operativos, only: [:index, :create]
     end
 
     resources :procesos, only: [] do

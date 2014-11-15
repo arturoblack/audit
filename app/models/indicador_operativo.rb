@@ -1,0 +1,3 @@
+class IndicadorOperativo < Indicador
+
+end
