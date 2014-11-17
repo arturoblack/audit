@@ -29,7 +29,7 @@ class Api::IndicadoresOperativosController < ApiController
 
   def indicador_operativo_params
     params.require(:indicador_operativo).
-      permit(:codigo, :nombre, :control, :descripcion).
+      permit(:codigo, :nombre, :control, :descripcion, :clase).
       merge({type: 'IndicadorOperativo'})
   end
 end

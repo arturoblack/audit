@@ -29,34 +29,25 @@ describe Api::IndicadoresGestionController, type: :controller do
         @area = create(:area)
       end
       it "responds with the correct status code" do
-        post :create, format: :json, area_id: @area.id,
-          indicador_gestion: { codigo: 'IG-01', nombre: 'INDI.1', 
-                               control: 'coneau' }
+        success_create
         expect(response.status).to eq(201)
       end
 
       it "registers in area's indicadores de gestion" do
-        expect{
-          post :create, format: :json, area_id: @area.id,
-          indicador_gestion: { codigo: 'IG-01', nombre: 'INDI.1', 
-                               control: 'coneau' }
-        }.to change{@area.indicadores_gestion.count}.by(1)
+        expect{ success_create }.
+          to change{@area.indicadores_gestion.count}.by(1)
       end
 
       it "has a response with message node" do
-        post :create, format: :json, area_id: @area.id,
-          indicador_gestion: { codigo: 'IG-01', nombre: 'INDI.1', 
-                               control: 'coneau' }
-
+        success_create       
+        
         expect(response.body).to have_json_node(:message).
           with(I18n.t('indicadores_gestion.flashes.created'))
       end
 
       it 'has a response with indicador de gestion node' do
-        post :create, format: :json, area_id: @area.id,
-        indicador_gestion: { codigo: 'IG-01', nombre: 'INDI.1', 
-                             control: 'coneau' }
-
+        success_create
+        
         expect(response.body).to have_json_node(:indicador_gestion)
         expect(response.body).to have_json_node(:id)
       end
@@ -81,5 +72,11 @@ describe Api::IndicadoresGestionController, type: :controller do
         expect(response.body).to have_json_node(:errors)
       end
     end
+  end
+  
+  def success_create
+    post :create, format: :json, area_id: @area.id,
+    indicador_gestion: { codigo: 'IG-01', nombre: 'INDI.1', 
+                         control: 'coneau', clase: 'satisfaccion' }
   end
 end
