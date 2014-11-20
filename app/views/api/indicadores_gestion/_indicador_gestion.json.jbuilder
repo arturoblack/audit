@@ -5,3 +5,6 @@ json.control ig.control
 json.type ig.type
 json.descripcion ig.descripcion
 json.clase ig.clase
+json.con_formula false
+json.objetivos_operativos 0
+json.objetivos_gestion 0
