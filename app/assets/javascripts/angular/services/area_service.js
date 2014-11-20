@@ -13,7 +13,9 @@ app.factory('AreaService',
       auditorias: { method: 'GET',
                 params: {areaId: '@areaId',resources: 'auditorias'}},
       create_auditoria: { method: 'POST',
-                params: {areaId: '@areaId',resources: 'auditorias'}}                    
+                params: {areaId: '@areaId',resources: 'auditorias'}},
+      indicadores_operativos: { mehtod: 'GET', 
+        params: { areaId: '@areaId', resources: 'indicadores_operativos'}},  
                
     }
   );
