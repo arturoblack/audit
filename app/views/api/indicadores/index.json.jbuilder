@@ -10,5 +10,6 @@ json.indicadores do
     json.type indicador.type
     json.control indicador.control
     json.descripcion indicador.descripcion
+    json.clase indicador.clase
   end
 end

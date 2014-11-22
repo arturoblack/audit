@@ -23,6 +23,8 @@
 //= require angular/controllers/oestrategicos_controllers.js
 //= require angular/controllers/areas_controllers.js
 //= require angular/controllers/indicadores_controller.js
+//= require angular/controllers/indicadores_operativos_controller.js
+//= require angular/controllers/indicadores_gestion_controller.js
 //= require angular/controllers/auditorias_controllers.js
 
 //= require angular/oestrategicos.js
