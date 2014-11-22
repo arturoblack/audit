@@ -3,7 +3,7 @@ var app = angular.module('indicadoresApp.Controllers',
 
 app.controller('areaIndicadoresController',
   ['$scope','$route', '$routeParams', 'AreaService', 'currentAreaService','messagesService',
-  'titleService',
+  'titleService', 
   function($scope,$route, $routeParams, AreaService, currentAreaService, messagesService,
     titleService){
   $scope.state = 'indicadores';
@@ -18,17 +18,8 @@ app.controller('areaIndicadoresController',
   });
   AreaService.indicadores({ areaId: $routeParams.areaId }).$promise.then(
     function(data) {
-      $scope.indicadores = [
-	{id:'GD1', nombre:'indicador 1',tipo:1,tipo2:1,descripcion:'descripcion larga'},
-	{id:'GD2', nombre:'indicador 2',tipo:1,tipo2:2,descripcion:'descripcion larga'},
-	{id:'GD3', nombre:'indicador 3',tipo:2,tipo2:1,descripcion:'descripcion larga'},
-	{id:'GD4', nombre:'indicador 4',tipo:2,tipo2:2,descripcion:'descripcion larga'},
-	{id:'GD5', nombre:'indicador 5',tipo:1,tipo2:2,descripcion:'descripcion larga'},
-	{id:'GD6', nombre:'indicador 6',tipo:2,tipo2:2,descripcion:'descripcion larga'},
-	{id:'GD7', nombre:'indicador 7',tipo:1,tipo2:1,descripcion:'descripcion larga'},
-	{id:'GD8', nombre:'indicador 8',tipo:1,tipo2:1,descripcion:'descripcion larga'},
-	{id:'GD9', nombre:'indicador 9',tipo:2,tipo2:1,descripcion:'descripcion larga'},
-      ];
+      console.log(data);
+      $scope.indicadores = data.indicadores;
       titleService.setTitle($scope.area.nombre + '> Indicadores');
       $scope.loading_area = false;      
   });
@@ -41,7 +32,43 @@ app.controller('areaIndicadoresController',
   }
   $scope.$on('switchView', function(event, new_state) {
     $scope.state = new_state;
-  });   
+  });
+  $scope.createIndicador = function(indicador){
+    console.log(indicador);
+    $scope.loading = true;
+    var type= 'indicadores';
+    if(indicador.type==1){
+      type = 'indicadores_gestion';
+      AreaService.create_indicador({areaId:$scope.area.id, type:type, indicador_gestion:indicador}).
+        $promise.then(
+          function(data){
+            console.log("return message from create Indicador");
+            console.log(data);
+            $location.path('/areas/' + $scope.area.id + '/indicadores');
+            messagesService.show_message('success', data.message);
+          }, function(error){
+            $scope.loading = false;
+            $scope.errors = error.data.errors;
+          }
+        );
+    }  
+    if(indicador.type==2){  
+      type = 'indicadores_operativos';
+      AreaService.create_indicador({areaId:$scope.area.id, type:type, indicador_operativo:indicador}).
+        $promise.then(
+          function(data){
+            console.log("return message from create Indicador");
+            console.log(data);
+            //  $location.path('/areas/' + $scope.area.id + '/indicadores');
+            messagesService.show_message('success', data.message);
+          }, function(error){
+            $scope.loading = false;
+            $scope.errors = error.data.errors;
+          }
+        );
+    }
+    
+  }
 }]);
 
 

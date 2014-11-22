@@ -1,7 +1,11 @@
 <div class="col-md-12">
+    <div class="box box-primary">
+
+<div class="col-md-12">
 	<h3> {{ area.nombre  }}</h3>
-	<button class="btn">Indicadores CONEAU</button>
-	<button class="btn">Indicadores Internos</button>
+	<input type="hidden" ng-model="control_filter" />
+	<button class="btn bg-blue" ng-click="control_filter='coneau'" >Indicadores CONEAU</button>
+	<button class="btn bg-green" ng-click="control_filter='interno'" >Indicadores Internos</button>
 	<hr>
 </div>
 <div class="col-md-12">
@@ -10,25 +14,26 @@
 			<tr>
 				<th>Codigo</th>
 				<th>Nombre</th>
-				<th>Tipo 1</th>
-				<th>Tipo 2</th>
-				<th>Opciones</th>
+				<th>Tipo</th>
+				<th>control</th>
+				<th>clase</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="indicador in indicadores">
+			<tr ng-repeat="indicador in indicadores | filter:{control: control_filter}">
 				<td> <strong> {{ indicador.id }} </strong> </td>
 				<td> {{ indicador.nombre }} </td>
 				<td ng-if="indicador.tipo == 1 "> <span class="badge bg-yellow">Gestión</span> </td>
 	  			<td ng-if="indicador.tipo == 2 "> <span class="badge bg-red">Operativo</span> </td>
-				<td ng-if="indicador.tipo2 == 1 "> <span class="badge bg-yellow">Interno</span> </td>
-				<td ng-if="indicador.tipo2 == 2 "> <span class="badge bg-red">CONEAU</span> </td>
-				<td>
-					<a href="#"> <i class="fa fa-fw fa-pencil"></i> Editar</a>  
-					| 
-					<a href="#"> <i class="fa fa-fw fa-trash-o"></i> Eliminar</a>
-				</td>
+				<td ng-if="indicador.control == 'interno' "> <span class="badge bg-green">Interno</span> </td>
+				<td ng-if="indicador.control == 'coneau' "> <span class="badge bg-blue">CONEAU</span> </td>
+				<td ng-if="indicador.clase == 'satisfaccion' "> <span class="badge bg-green">Satisfacción</span> </td>
+				<td ng-if="indicador.clase == 'eficacia' "> <span class="badge bg-blue">Eficacia</span> </td>
+				<td ng-if="indicador.clase == 'otros' "> <span class="badge bg-green">Otros</span> </td>
+				
 			</tr>
 		</tbody>
 	</table>
+</div>
+	</div>
 </div>

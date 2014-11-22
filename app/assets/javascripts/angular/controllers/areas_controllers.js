@@ -24,7 +24,7 @@ app.controller('newAreaController',
       AreaService.create({area: $scope.area}).
         $promise.then(
           function(data){
-            $location.path('/areas/' + data.area.id);
+            //$location.path('/areas/' + data.area.id);
             messagesService.show_message('success', data.message);
           }, function(error){
             $scope.loading = false;
