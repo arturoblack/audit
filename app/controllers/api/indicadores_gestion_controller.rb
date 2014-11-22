@@ -27,7 +27,7 @@ class Api::IndicadoresGestionController < ApiController
   end
   def indicador_gestion_params
     params.require(:indicador_gestion).
-      permit(:codigo, :nombre, :control, :descripcion).
+      permit(:codigo, :nombre, :control, :descripcion, :clase).
       merge({type: 'IndicadorGestion'})
   end
 end

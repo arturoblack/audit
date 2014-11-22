@@ -1,0 +1,57 @@
+<section class="content">
+  <div class="row">
+  <div class="col-xs-12">
+    <div class="box box-primary" style='color:black'>
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover" >
+          <tr>
+            <th>CÓDIGO</th>
+            <th>NOMBRE</th>
+            <th>CONTROL</th>
+            <th>CLASE</th>
+            <th>COLABORA CON</th>
+            <th>SUSTENTADO CON</th>
+            <th>¿FORMULA?</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="ig in indicadores_gestion">
+            <td>{{ig.codigo}}</td>
+            <td>{{ig.nombre}}</td>
+            <td>{{ig.control | uppercase}}</td>
+            <td>{{ig.clase | uppercase}}</td>
+            <td>
+              <span class='text-info'>
+                {{ig.objetivos_gestion}}
+              </span> objectivos de gestión
+            </td>
+            <td>
+              <span class='text-primary'>
+                {{ig.objetivos_operativos}}
+              </span> objectivos operativos
+            </td>
+            <td>
+              <span ng-if="ig.con_formula == true" class='label label-success'>
+                Definida
+              </span>
+              <span ng-if="ig.con_formula == false" class='label label-danger'>
+                Por definir
+              </span>
+
+            </td>
+            <td>
+              <button class="btn btn-success btn-sm">
+                <i class="fa fa-eye"> Ver</i>
+              </button>
+
+              <button class="btn btn-primary btn-sm">
+                <i class="fa fa-pencil-square-o"> Definir Obj. Op.</i>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div>
+  </div>
+</section>
+

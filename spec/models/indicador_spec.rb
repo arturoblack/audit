@@ -18,5 +18,8 @@ describe Indicador do
 
   it { is_expected.to validate_inclusion_of(:control).
        in_array(%w(coneau interno)) }
+
+  it { is_expected.to validate_inclusion_of(:clase).
+       in_array(%w(satisfaccion eficacia otros)) }
 end
 

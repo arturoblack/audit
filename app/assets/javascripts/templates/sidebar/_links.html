@@ -11,6 +11,8 @@
             <small class="badge pull-right bg-red">3</small>
           </a>
         </li>
+        
+        <li style="border-top: 3px solid #29d"></li>
         <li ng-class="{active: active_link == 1}">
           <a ng-href="/areas/{{area.id}}/procesos">
             <i class="fa fa-cogs"></i><span>Procesos y Evidencias</span>
@@ -18,18 +20,37 @@
         </li>          
         <li ng-class="{active: active_link == 2}">
           <a ng-href="/areas/{{area.id}}/auditorias">
-            <i class="fa fa-pencil-square-o"></i> <span>Auditorias</span>            
+            <i class="fa fa-pencil-square-o"></i>
+            <span>Auditoria de evidencias</span>
           </a>
         </li> 
+
+        <li style="border-top: 3px solid #29d"></li>
         <li ng-class="{active: active_link == 3}">
           <a ng-href="/areas/{{area.id}}/indicadores">
-            <i class="fa fa-bullhorn"></i> <span>Adm. Indicadores</span>            
+            <i class="fa fa-bullhorn"></i> <span>Adm. Indicadores</span>
           </a>
         </li> 
-        
+
+        <li ng-class="{active: active_link == 4}">
+          <a ng-href="/areas/{{area.id}}/indicadores_operativos">
+            <i class="fa fa-minus"></i><i class="fa fa-minus"></i>
+            <span>Indicadores Operativos</span>
+          </a>
+        </li> 
+
+        <li ng-class="{active: active_link == 5}">
+          <a ng-href="/areas/{{area.id}}/indicadores_gestion">
+            <i class="fa fa-minus"></i><i class="fa fa-minus"></i>
+            <span>Indicadores de Gestión</span>
+          </a>
+        </li> 
+
+        <li style="border-top: 3px solid #29d"></li>
         <li>
           <a href="#">
-            <i class="fa fa-th"></i> <span>Objetivos</span> <small class="badge pull-right bg-green">new</small>
+            <i class="fa fa-th"></i> <span>Objetivos</span>
+            <small class="badge pull-right bg-green">new</small>
           </a>
         </li>         
       </ul>

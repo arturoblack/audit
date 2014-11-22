@@ -4,3 +4,6 @@ json.nombre io.nombre
 json.control io.control
 json.type io.type
 json.descripcion io.descripcion
+json.clase io.clase
+json.con_formula false
+json.objetivos_operativos 0

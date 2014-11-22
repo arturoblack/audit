@@ -60,6 +60,10 @@ app.controller('sidebarAreaController',
       $scope.active_link = 1;
     }else if($location.path().match(/auditorias/)){
       $scope.active_link = 2;
+    }else if($location.path().match(/indicadores_operativos/)){
+      $scope.active_link = 4;
+    }else if($location.path().match(/indicadores_gestion/)){
+      $scope.active_link = 5;
     }else if($location.path().match(/indicadores/)){
       $scope.active_link = 3;
     }else{
