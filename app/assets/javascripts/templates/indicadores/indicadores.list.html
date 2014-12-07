@@ -22,15 +22,20 @@
 		<tbody>
 			<tr ng-repeat="indicador in indicadores | filter:{control: control_filter}">
 				<td> <strong> {{ indicador.id }} </strong> </td>
-				<td> {{ indicador.nombre }} </td>
-				<td ng-if="indicador.tipo == 1 "> <span class="badge bg-yellow">Gestión</span> </td>
-	  			<td ng-if="indicador.tipo == 2 "> <span class="badge bg-red">Operativo</span> </td>
-				<td ng-if="indicador.control == 'interno' "> <span class="badge bg-green">Interno</span> </td>
-				<td ng-if="indicador.control == 'coneau' "> <span class="badge bg-blue">CONEAU</span> </td>
-				<td ng-if="indicador.clase == 'satisfaccion' "> <span class="badge bg-green">Satisfacción</span> </td>
-				<td ng-if="indicador.clase == 'eficacia' "> <span class="badge bg-blue">Eficacia</span> </td>
-				<td ng-if="indicador.clase == 'otros' "> <span class="badge bg-green">Otros</span> </td>
-				
+				<td> {{indicador.codigo}}-{{ indicador.nombre }}  </td>
+				<td> 
+					<span ng-if="indicador.type == 'IndicadorOperativo' " class="badge bg-yellow">Operativo</span>
+					<span ng-if="indicador.type == 'IndicadorGestion'" class="badge bg-red">Gestión</span>
+				</td>
+				<td> 
+					<span ng-if="indicador.control == 'interno' " class="badge bg-green">Interno</span>
+					<span ng-if="indicador.control == 'coneau' "class="badge bg-blue">CONEAU</span>
+				</td>
+				<td > 
+					<span ng-if="indicador.clase == 'satisfaccion' " class="badge">Satisfacción</span>
+					<span ng-if="indicador.clase == 'eficacia' " class="badge">Eficacia</span>
+					<span ng-if="indicador.clase == 'otros' " class="badge">Otros</span> 
+				</td>
 			</tr>
 		</tbody>
 	</table>
