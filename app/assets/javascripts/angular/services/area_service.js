@@ -13,12 +13,15 @@ app.factory('AreaService',
       auditorias: { method: 'GET',
         params: {areaId: '@areaId',resources: 'auditorias'}},
       create_auditoria: { method: 'POST',
-        params: {areaId: '@areaId',resources: 'auditorias'}},
+                params: {areaId: '@areaId',resources: 'auditorias'}},
+      indicadores: { method: 'GET',
+                params: { areaId: '@areaId',resources: 'indicadores'}},
+      create_indicador: { method: 'POST',
+                params: { areaId: '@areaId',resources: '@type'}},
       indicadores_gestion: { method: 'GET', 
-        params: { areaId: 'areaId', resources: 'indicadores_gestion'}},
+        params: { areaId: '@areaId', resources: 'indicadores_gestion'}},
       indicadores_operativos: { mehtod: 'GET', 
         params: { areaId: '@areaId', resources: 'indicadores_operativos'}},  
-               
     }
   );
 }]);

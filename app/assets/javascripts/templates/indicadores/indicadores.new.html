@@ -1,1 +1,61 @@
-<h1>In the new template</h1>
+<div class="col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title"> Nuevo Indicador </h3>
+		</div>
+		<div class="panel-body">
+			<form ng-submit="createIndicador(indicador)" role="form">
+			    <div class="box-body">
+				<div class="form-group">
+					<label for="">Codigo</label>
+					<input type="text" ng-model="indicador.codigo" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="">Nombre</label>
+					<input type="text" ng-model="indicador.nombre" class="form-control" />
+				</div>
+				<div class="row">
+				    <div class="col-md-6">				
+					<div class="form-group">
+						<label for="tipo">Tipo de Indicador</label>
+						<br />
+						<input type="radio" ng-model="indicador.type" value="IndicadorGestion" name="tipo" class="" />
+						Gestión <br />
+						<input type="radio" ng-model="indicador.type" value="IndicadorOperativo" name="tipo" class="" />
+						Operativo <br />
+					</div>
+					<div class="form-group">
+						<label for="tipo2">Procedencia del Indicador</label>
+						<br />
+						<input type="radio" ng-model="indicador.control" value="coneau" name="control" class="" />
+						Interno <br />
+						<input type="radio" ng-model="indicador.control" value="interno" name="control" class="" />
+						CONEAU <br />
+					</div>
+				    </div>
+				    <div class="col-md-6">
+				    	<div class="form-group">
+				    		<label for="clase">Clase de Indicador</label>
+						<br />
+				    		<input type="radio" value="satisfaccion" ng-model="indicador.clase" name="clase" />
+						Satisfacón <br />
+				    		<input type="radio" value="eficacia" ng-model="indicador.clase" name="clase" />
+						Eficacia <br />
+							<input type="radio" value="otros" ng-model="indicador.clase" name="clase" />
+						Otros
+				    	</div>
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="descripcion"> Descipción </label>
+					<textarea name="decripcion" ng-model="indicador.descripcion" rows="4" class="form-control" ></textarea>
+				</div>
+				<div class="form-group">
+					<input type="reset" value="Limpiar" class="btn btn-danger" />
+					<input type="submit" ng-disabled="loading" value="Agregar Indicador" class="btn btn-primary" />
+				</div>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
